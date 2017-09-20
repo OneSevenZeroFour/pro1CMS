@@ -1,5 +1,25 @@
 @charset "UTF-8";
 /*========头部====*/
+/* 根据定位显示天气 */
+.geo_wea{position: fixed;left:14px;bottom:14px;cursor: default;z-index: 9999;color:#E6E6E6;font-size: 14px;}
+.geo_wea_today{overflow:hidden;padding: 10px;background-color: #424852;border-radius: 5px;}
+.today_left{float: left;height: 40px;line-height: 40px;font-size: 18px;margin-right: 8px;}
+.today_right{float: right;line-height: 20px;text-align: center;}
+.geo_wea_forecast{padding: 10px;background-color: #424852;border-radius: 5px;}
+.forecast_top{border-bottom: 1px solid #eee;padding-bottom: 20px;}
+.forecast_top_title{font-size: 14px;}
+.forecast_top_title .date{font-size: 12px;font-weight: normal;}
+.forecast_top_main{height: 80px;line-height: 80px;text-align: center;font-size: 32px;;}
+.forecast_top_footer{overflow:hidden;}
+.forecast_top_footer li{float: left;width: 70px;text-align: center;}
+.forecast_top_footer li .name{font-size: 14px;line-height: 22px;}
+.forecast_top_footer li .cont{font-size:18px;font-weight: bold;}
+.forecast_bot{overflow:hidden;padding: 20px 0;font-size: 12px;}
+.forecast_bot li{float: left;width: 69px;text-align: center;border-right:1px dashed #868686;}
+.forecast_bot li:last-child{border:0 none;}
+.forecast_bot li>div{line-height: 22px;}
+
+
 /*头部——顶部*/
 .head_top { height: 25px; background-color: #EEEEEE; border-bottom: 1px solid #E5E5E5; font-family: '宋体'; }
 
