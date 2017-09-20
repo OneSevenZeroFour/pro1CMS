@@ -2,7 +2,7 @@
 * @Author: 陈文贵
 * @Date:   2017-09-05 22:05:57
 * @Last Modified by:   Marte
-* @Last Modified time: 2017-09-08 21:30:48
+* @Last Modified time: 2017-09-20 16:33:38
 */
 
 require(['config'],function(){
@@ -16,11 +16,14 @@ require(['config'],function(){
             cookies = cookies.split('; ');
             cookies.forEach(function(item){
                 var arr = item.split('=');
-                if(arr[0]==='cart_list'){
-                    cart_list = JSON.parse(arr[1]);
-                }
                 if(arr[0]==='username'){
                     username = arr[1];
+                }
+            });
+            cookies.forEach(function(item){
+                var arr = item.split('=');
+                if(arr[0]==='cart_list_'+username){
+                    cart_list = JSON.parse(arr[1]);
                 }
             });
         }
@@ -54,7 +57,7 @@ require(['config'],function(){
             func(arr);
             var date = new Date();
             date.setDate(date.getDate()+7);
-            document.cookie = 'cart_list='+JSON.stringify(arr)+';expires='+date.toUTCString()+';path=/';
+            document.cookie = "cart_list_"+username+"="+JSON.stringify(arr)+';expires='+date.toUTCString()+';path=/';
         }
         //增减购物单数量
         function changeCartNum(cartId,num,arr){
@@ -76,7 +79,7 @@ require(['config'],function(){
             cart_list = arr;
             var date = new Date();
             date.setDate(date.getDate()+7);
-            document.cookie = 'cart_list='+JSON.stringify(cart_list)+';expires='+date.toUTCString()+";path=/";
+            document.cookie = "cart_list_"+username+"="+JSON.stringify(cart_list)+';expires='+date.toUTCString()+";path=/";
         }
         //生成购物车html结构
         var $cart_list = $('.cart_list');

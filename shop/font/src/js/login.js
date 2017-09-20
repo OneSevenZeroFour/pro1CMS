@@ -2,7 +2,7 @@
 * @Author: 陈文贵
 * @Date:   2017-09-05 22:04:16
 * @Last Modified by:   Marte
-* @Last Modified time: 2017-09-08 21:43:50
+* @Last Modified time: 2017-09-20 16:46:53
 */
 require(['config'],function(){
     require(['jquery'],function($){
@@ -66,6 +66,13 @@ require(['config'],function(){
                         }
                     }
                 });
+            }
+        });
+        //验证码输入回车触发点击登陆
+        $ver_code.keydown(function(e){
+            if(e.keyCode===13){
+                $ver_code.blur();
+                $login_btn.click();
             }
         });
     });

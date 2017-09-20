@@ -2,7 +2,7 @@
 * @Author: 陈文贵
 * @Date:   2017-09-01 10:51:04
 * @Last Modified by:   Marte
-* @Last Modified time: 2017-09-09 10:54:13
+* @Last Modified time: 2017-09-20 16:35:09
 */
 require(['config'],function(){
     require(['jquery'],function($){
@@ -139,7 +139,6 @@ require(['config'],function(){
                     doAfterLoad();
                 }
             });
-
             function doAfterLoad(){
                 /*===========加入购物车============*/
                 var $add_cart = $('.add_cart');
@@ -175,7 +174,7 @@ require(['config'],function(){
                     changeComCart(cart_list);
                     var date = new Date();
                     date.setDate(date.getDate()+7);
-                    document.cookie = "cart_list="+JSON.stringify(cart_list)+";expires="+date.toUTCString()+";path=/";
+                    document.cookie = "cart_list_"+username+"="+JSON.stringify(cart_list)+";expires="+date.toUTCString()+";path=/";
                     var buyAll = $num_input.val()*1;
                     cart_list.forEach(function(item){
                         if(item.good_id===good_id){

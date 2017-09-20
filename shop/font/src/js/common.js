@@ -2,27 +2,30 @@
 * @Author: 陈文贵
 * @Date:   2017-09-01 09:12:53
 * @Last Modified by:   Marte
-* @Last Modified time: 2017-09-20 15:34:31
+* @Last Modified time: 2017-09-20 16:31:53
 */
 
 /*
     cookie
  */
-var username = '';
-var cart_list = [];//应该根据用户id获取该用户购物车列表【先用本地cookie】
-var cookies = document.cookie;
-if(cookies.length>0){
-    cookies = cookies.split('; ');
-    cookies.forEach(function(item){
-        var arr = item.split('=');
-        if(arr[0]==='cart_list'){
-            cart_list = JSON.parse(arr[1]);
-        }
-        if(arr[0]==='username'){
-            username = arr[1];
-        }
-    });
-}
+ var username = '';
+ var cart_list = [];//应该根据用户id获取该用户购物车列表【先用本地cookie】
+ var cookies = document.cookie;
+ if(cookies.length>0){
+     cookies = cookies.split('; ');
+     cookies.forEach(function(item){
+         var arr = item.split('=');
+         if(arr[0]==='username'){
+             username = arr[1];
+         }
+     });
+     cookies.forEach(function(item){
+         var arr = item.split('=');
+         if(arr[0]==='cart_list_'+username){
+             cart_list = JSON.parse(arr[1]);
+         }
+     });
+ }
 
 /*
     登录部分
@@ -95,6 +98,8 @@ if(username){
     $('.hd_cart_list').on('click','.delBtn',function(){
         delCart(cart_list,$(this).closest('li').attr('data-goodid'));
     });
+    //右边栏购物车跳转购物车页
+    $('#rCart').click(function(){location.assign('good_cart.html')});
 }else{
     $('.login_reg').show();
     $('.logined').hide();
