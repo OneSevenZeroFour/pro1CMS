@@ -17,6 +17,16 @@
 	<link rel="stylesheet" href="assets/css/admin.css">
 	<link rel="stylesheet" href="assets/lib/bootstrap-3.3.7-dist/css/bootstrap.min.css">
 	<link rel="stylesheet" href="assets/lib/bootstrap-fileinput-master/css/fileinput.min.css">
+	<style>
+		.admin-content-body {
+			padding: 0 20px 0 30px;
+		}
+
+		.form-group>label {
+			font-size: 14px;
+			color: #666;
+		}
+	</style>
 </head>
 
 <body>
@@ -97,54 +107,83 @@
 				</div>
 
 				<form action="" method="post" name="detail_form" id="detailForm">
-					<div class="form-group">
-						<label for="goodsType">goods_type</label>
-						<input type="text" class="form-control" id="goodsType">
-					</div>
-					<div class="form-group">
-						<label for="goodsPrice">goods_price</label>
-						<input type="text" class="form-control" id="goodsPrice">
-					</div>
-					<div class="form-group">
-						<label for="goodsOldPrice">goods_oldPrice</label>
-						<input type="text" class="form-control" id="goodsOldPrice">
-					</div>
-					<div class="form-group">
-						<label for="goodsText">goods_text</label>
-						<input type="text" class="form-control" id="goodsText">
-					</div>
-					<div class="form-group">
-						<label for="goodsSaleNum">sale_num</label>
-						<input type="text" class="form-control" id="goodsSaleNum">
-					</div>
-					<div class="form-group">
-						<label for="goodsLastNum">last_num</label>
-						<input type="text" class="form-control" id="goodsLastNum">
-					</div>
-					<div class="form-group">
-						<label for="goodsSize">sizes</label>
-						<input type="text" class="form-control" id="goodsSize">
-					</div>
-					<div class="form-group">
-						<label for="goodsDescription">description</label>
-						<input type="text" class="form-control" id="goodsDescription">
+					<div class="row">
+
+						<div class="form-group col-sm-6">
+							<label for="goodsType" class=" control-label">商品类型</label>
+							<div class="">
+								<input type="text" class="form-control" id="goodsType">
+							</div>
+						</div>
+						<div class="form-group col-sm-6">
+							<label for="goodsText" class=" control-label">商品名称</label>
+							<div class="">
+								<input type="text" class="form-control" id="goodsText">
+							</div>
+						</div>
 					</div>
 
-					<div class="form-group">
-						<label for="file_01">list_big_img</label>
-						<input id="file_01" name="list_big" multiple type="file" data-show-caption="false"  >
+					<div class="row">
+						<div class="form-group col-sm-6">
+							<label for="goodsPrice" class="control-label ">优惠价格</label>
+							<div class="">
+								<input type="text" class="form-control" id="goodsPrice">
+							</div>
+						</div>
+						<div class="form-group col-sm-6">
+							<label for="goodsOldPrice" class="control-label ">原价格</label>
+							<div class="">
+								<input type="text" class="form-control" id="goodsOldPrice">
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-group col-sm-6">
+							<label for="goodsSaleNum" class=" control-label">出售数量</label>
+							<div class="">
+								<input type="text" class="form-control" id="goodsSaleNum">
+							</div>
+						</div>
+						<div class="form-group col-sm-6">
+							<label for="goodsLastNum" class=" control-label">库存数量</label>
+							<div class="">
+								<input type="text" class="form-control" id="goodsLastNum">
+							</div>
+						</div>
 					</div>
 					<div class="form-group">
-						<label for="file_02">list_small_img</label>
-						<input id="file_02" name="list_small" multiple type="file" data-show-caption="false"  >
+						<label for="goodsSize" class=" control-label">商品规格</label>
+						<div class="">
+							<input type="text" class="form-control" id="goodsSize">
+						</div>
+					</div>
+
+
+					<div class="form-group">
+						<label for="file_01">列表页大图</label>
+						<input id="file_01" name="list_big" multiple type="file" data-show-caption="true">
 					</div>
 					<div class="form-group">
-						<label for="file_03">detail_big_img</label>
-						<input id="file_03" name="detail_big" multiple type="file" data-show-caption="false"  >
+						<label for="file_02">列表页小图</label>
+						<input id="file_02" name="list_small" multiple type="file" data-show-caption="true">
 					</div>
 					<div class="form-group">
-						<label for="file_04">detail_small_img</label>
-						<input id="file_04" name="detail_small" multiple type="file" data-show-caption="false"  >
+						<labeld for="file_03">详情页大图</label>
+						<input id="file_03" name="detail_big" multiple type="file" data-show-caption="true">
+					</div>
+					<div class="form-group">
+						<label for="file_04">详情页小图</label>
+						<input id="file_04" name="detail_small" multiple type="file" data-show-caption="true">
+					</div>
+					<div class="form-group">
+						<label for="file_05">详情描述</label>
+						<input id="file_05" name="descripImg" multiple type="file" data-show-caption="true">
+					</div>
+					<div class="form-group">
+						<label for="goodsDescription" class=" control-label">商品描述</label>
+						<div class="">
+							<input type="text" class="form-control" id="goodsDescription">
+						</div>
 					</div>
 					<div class="upload" style="margin-top:20px;">
 						<input type="submit" id="sub_Btn" value="提交" class="form-control btn-primary" style="width:100px;">
@@ -174,7 +213,6 @@
 	<script src="assets/lib/bootstrap-fileinput-master/js/fileinput.min.js"></script>
 	<script src="assets/lib/bootstrap-fileinput-master/js/locales/zh.js"></script>
 	<script>
-
 		var imgList = {};
 
 		$.each($("[type = 'file']"), function (index, ele) {
@@ -202,39 +240,41 @@
 				console.log(file)
 
 			})
-			$(ele).on('fileclear',function(event){
-				
-			})
 			//上传触发
-			$(ele).on("fileuploaded", function(event, data, previewId, index){
+			$(ele).on("fileuploaded", function (event, data, previewId, index) {
 				imgList[$(ele).prop('name')] = data.response.imgUrl;
 			});
 		})
-		
+
 		$('#sub_Btn').click(function (e) {
 			e.preventDefault();
-			
-			var obj = {
-				goodsType : $('#goodsType').val(),
-				goodsPrice : $('#goodsPrice').val(),
-				goodsOldPrice : $('#goodsOldPrice').val(),
-				goodsSaleNum : $('#goodsSaleNum').val(),
-				goodsLastNum : $('#goodsLastNum').val(),
-				goodsSize : $('#goodsSize').val(),
-				goodsDescription : $('#goodsDescription').val(),
-				goodsText : $('#goodsText').val(),
-				imgList : imgList
-			}
-			$.post('http://localhost:3000/insert',{
-				data : JSON.stringify(obj)
-			},function(res){
-				console.log(res)
+			var filesLength = 0;
+			$.each($("[type = 'file']"), function (index, ele) {
+				var files = $(ele).fileinput('getFileStack');
+				filesLength += files.length;
 			})
-			//console.log($('#file_03')[0].files)
-		})
 
-	
-		
+			if (filesLength > 0) {
+				alert('你还有图片未上传');
+			} else {
+				var obj = {
+					goodsType: $('#goodsType').val(),
+					goodsPrice: $('#goodsPrice').val(),
+					goodsOldPrice: $('#goodsOldPrice').val(),
+					goodsSaleNum: $('#goodsSaleNum').val(),
+					goodsLastNum: $('#goodsLastNum').val(),
+					goodsSize: $('#goodsSize').val(),
+					goodsDescription: $('#goodsDescription').val(),
+					goodsText: $('#goodsText').val(),
+					imgList: imgList
+				}
+				$.post('http://localhost:3000/insert', {
+					data: JSON.stringify(obj)
+				}, function (res) {
+					console.log(res)
+				})
+			}
+		})
 	</script>
 </body>
 
