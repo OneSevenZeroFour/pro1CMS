@@ -80,7 +80,7 @@ app.post('/insert',function(req,res){
 
 	connection.query(sql,function(err,result,fields){
 		var obj = {
-			status : 'success',
+			status : true,
 			data : result
 		}
 		res.send(JSON.stringify(obj));

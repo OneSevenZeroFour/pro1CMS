@@ -271,7 +271,10 @@
 				$.post('http://localhost:3000/insert', {
 					data: JSON.stringify(obj)
 				}, function (res) {
-					console.log(res)
+					var res = JSON.parse(res);
+					if(res.status){
+						alert('商品增加成功');
+					}
 				})
 			}
 		})
