@@ -1,5 +1,5 @@
 @charset "UTF-8";
-/*========头部====*/
+
 /* 根据定位显示天气 */
 .geo_wea{position: fixed;left:14px;bottom:14px;cursor: default;z-index: 9999;color:#E6E6E6;font-size: 14px;}
 .geo_wea_today{overflow:hidden;padding: 10px;background-color: #424852;border-radius: 5px;}
@@ -19,7 +19,22 @@
 .forecast_bot li:last-child{border:0 none;}
 .forecast_bot li>div{line-height: 22px;}
 
+/* 云弹窗 */
+.popupWrap{position:fixed;top:0;left:0;width: 100%;height: 100%;z-index: 999999;background-color: rgba(0,0,0,.4);}
+#popup{padding-top: 30px;padding-left: 14px;text-align: center;}
+#popup{width: 400px;height: 180px;position: absolute;top:50%;left: 50%;margin-left: -200px;margin-top: -90px;}
+.popupHead{height: 22px;line-height: 22px;font-size: 16px;}
+.popupContent{font-size: 22px;margin-top: 30px;}
+#popup a{margin-top: 30px;display: inline-block;height: 34px;line-height: 34px;padding: 0 16px;background-color: #C00405;color: #FFF;font-size: 18px;border-radius: 6px;}
+.popupHead strong{font-weight: normal;font-size: 18px;position: relative;overflow: visible;}
+.popupHead span{display: inline-block;}
+.popupHead strong>span{position:absolute;left: -24px;width: 22px;height: 22px;margin-right: 8px;border-radius: 11px;background-color: #C00405;}
+.popupHead .a{width: 2px;height: 11px;background-color: #FFF;position: absolute;left: 10px;top: 3px;}
+.popupHead .b{width: 2px;height: 2px;background-color: #FFF;position: absolute;left: 10px;top: 17px;}   
+.popupCloudy{background-color: #FFF;width: 100px;height: 100px;border-radius: 50px;position: absolute;z-index: -2;top: -24px;left: -16px;box-shadow: 60px -20px 0 11px #FFF,130px -30px 0 31px #FFF,200px -20px 0 28px #FFF,260px -1px 0 19px #FFF,330px 20px 0 15px #FFF,370px 80px 0 20px #FFF,310px 130px 0 15px #FFF,260px 120px 0 30px #FFF,210px 140px 0 45px #FFF,120px 120px 0 55px #FFF,10px 80px 0 40px #FFF; }
+.popupCloudy span{display: inline-block;height: 102px;width: 102px;border-radius: 50px;background-color: #FFF;position: relative;z-index: -1;}
 
+/*========头部====*/
 /*头部——顶部*/
 .head_top { height: 25px; background-color: #EEEEEE; border-bottom: 1px solid #E5E5E5; font-family: '宋体'; }
 

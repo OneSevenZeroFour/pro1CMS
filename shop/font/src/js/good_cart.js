@@ -2,7 +2,7 @@
 * @Author: 陈文贵
 * @Date:   2017-09-05 22:05:57
 * @Last Modified by:   Marte
-* @Last Modified time: 2017-09-20 16:33:38
+* @Last Modified time: 2017-09-20 20:57:18
 */
 
 require(['config'],function(){
@@ -26,6 +26,30 @@ require(['config'],function(){
                     cart_list = JSON.parse(arr[1]);
                 }
             });
+        }
+        //云弹窗
+        function createPoup(text,title,btnValue){
+           title=title||location.host+'提示';
+           text=text||'bug';
+           btnValue=btnValue||'确定';
+           var poupHtml = `
+                           <div id="popup">
+                               <div class="popup">
+                                   <div class="popupHead">
+                                       <strong><span><span class="a"></span><span class="b"></span></span>${title}</strong>
+                                   </div>
+                                   <div class="popupContent">
+                                       ${text}
+                                   </div>
+                                   <a href="javascript:void(0)" class="popBtn">${btnValue}</a>
+                               </div>
+                               <div class="popupCloudy">
+                                   <span></span>
+                               </div>
+                           </div>
+                           `;
+           var $popObj=$('<div></div>').addClass('popupWrap').html(poupHtml).appendTo($('body')).on('click',function(){$popObj.remove()});
+           $('.popBtn').click(function(){$popObj.remove()});
         }
         /*
             登录部分
@@ -71,7 +95,7 @@ require(['config'],function(){
                     }
                     if(item.buy_num>item.last_num){
                         item.buy_num = item.last_num;
-                        alert('该商品库存不足；库存仅'+item.last_num+'件');
+                        createPoup('该商品库存不足；库存仅'+item.last_num+'件');
                     }
                 }
             });

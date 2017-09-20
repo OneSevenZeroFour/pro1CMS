@@ -2,7 +2,7 @@
 * @Author: 陈文贵
 * @Date:   2017-09-01 09:12:53
 * @Last Modified by:   Marte
-* @Last Modified time: 2017-09-20 16:31:53
+* @Last Modified time: 2017-09-20 20:54:18
 */
 
 /*
@@ -111,7 +111,6 @@ if(username){
     $('#rCart').find('strong').text(0);
     $('#rCart').find('p').hide();
 }
-
 
 /*
     根据定位显示天气
@@ -232,4 +231,30 @@ if(username){
      $geoForecast.mouseleave(function(){
          $geoForecast.hide(200,function(){$geoToady.show();});               
      });
+ }
+
+
+ //云弹窗
+ function createPoup(text,title,btnValue){
+    title=title||location.host+'提示';
+    text=text||'bug';
+    btnValue=btnValue||'确定';
+    var poupHtml = `
+                    <div id="popup">
+                        <div class="popup">
+                            <div class="popupHead">
+                                <strong><span><span class="a"></span><span class="b"></span></span>${title}</strong>
+                            </div>
+                            <div class="popupContent">
+                                ${text}
+                            </div>
+                            <a href="javascript:void(0)" class="popBtn">${btnValue}</a>
+                        </div>
+                        <div class="popupCloudy">
+                            <span></span>
+                        </div>
+                    </div>
+                    `;
+    var $popObj=$('<div></div>').addClass('popupWrap').html(poupHtml).appendTo($('body')).on('click',function(){$popObj.remove()});
+    $('.popBtn').click(function(){$popObj.remove()});
  }

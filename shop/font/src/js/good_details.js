@@ -2,7 +2,7 @@
 * @Author: 陈文贵
 * @Date:   2017-09-01 10:51:04
 * @Last Modified by:   Marte
-* @Last Modified time: 2017-09-20 16:35:09
+* @Last Modified time: 2017-09-20 20:10:01
 */
 require(['config'],function(){
     require(['jquery'],function($){
@@ -201,10 +201,10 @@ require(['config'],function(){
                     });
                 }
                 $add_cart.click(function(e){
-                    if(!username){alert('请先登录');return;}
-                    if(isFull){alert('该商品库存不足;库存仅'+last_num+'件');return;}
+                    if(!username){createPoup('请先登录');return;}
+                    if(isFull){createPoup('该商品库存不足;库存仅'+last_num+'件');return;}
                     var $size = $('.size_choice').find('.g_on');
-                    if(!$size.length){alert('请先选择商品尺码');return;}
+                    if(!$size.length){createPoup('请先选择商品尺码');return;}
                     flyToCart(e,addCart);
                 });
 
@@ -236,7 +236,7 @@ require(['config'],function(){
                     var step_num = this.className==='bc_increase'?1:-1;
                     var new_num = $bc_num_input.val()*1 + step_num;
                     if(new_num<=0){new_num=1;}
-                    if(new_num>last_num){new_num = last_num;alert('该商品库存仅'+last_num+'件')}
+                    if(new_num>last_num){new_num = last_num;createPoup('该商品库存仅'+last_num+'件')}
                     $bc_num_input.val(new_num);
                     $num_input.val(new_num);
                     showBuyMes();
@@ -292,7 +292,7 @@ require(['config'],function(){
                     var step_num = this.className==='increase'?1:-1;
                     var new_num = $num_input.val()*1 + step_num;
                     if(new_num<=0){new_num=1;}
-                    if(new_num>last_num){new_num = last_num;alert('该商品库存仅'+last_num+'件')}
+                    if(new_num>last_num){new_num = last_num;createPoup('该商品库存仅'+last_num+'件')}
                     $num_input.val(new_num);
                     $bc_num_input.val(new_num);
                     showBuyMes();
@@ -307,7 +307,7 @@ require(['config'],function(){
                 $num_input.on('input',function(){
                     var new_num = $num_input.val()*1;
                     if(new_num<=0||isNaN(new_num)){$num_input.val(1);$num_input.val(1);return;};
-                    if(new_num>last_num){new_num = last_num;alert('该商品库存仅'+last_num+'件')}
+                    if(new_num>last_num){new_num = last_num;createPoup('该商品库存仅'+last_num+'件')}
                     $num_input.val(new_num);
                     $bc_num_input.val(new_num);
                     showBuyMes();
