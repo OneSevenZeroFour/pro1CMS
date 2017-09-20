@@ -112,11 +112,16 @@
 						<div class="form-group col-sm-6">
 							<label for="goodsType" class=" control-label">商品类型</label>
 							<div class="">
-								<input type="text" class="form-control" id="goodsType">
+								<select class="form-control" id="goodsType" style="font-size:14px;">
+									<option>type1</option>
+									<option>type2</option>
+									<option>type3</option>
+									<option>type4</option>
+								</select>
 							</div>
 						</div>
 						<div class="form-group col-sm-6">
-							<label for="goodsText" class=" control-label">商品名称</label>
+							<label for="goodsText" class=" control-label">商品信息</label>
 							<div class="">
 								<input type="text" class="form-control" id="goodsText">
 							</div>
@@ -153,6 +158,7 @@
 					</div>
 					<div class="form-group">
 						<label for="goodsSize" class=" control-label">商品规格</label>
+						<span class="" style="color:#DD4C09;font-size:14px;margin-left:40px;">若有多个型号，型号间用"/"隔开</span>
 						<div class="">
 							<input type="text" class="form-control" id="goodsSize">
 						</div>
@@ -169,7 +175,7 @@
 					</div>
 					<div class="form-group">
 						<labeld for="file_03">详情页大图</label>
-						<input id="file_03" name="detail_big" multiple type="file" data-show-caption="true">
+							<input id="file_03" name="detail_big" multiple type="file" data-show-caption="true">
 					</div>
 					<div class="form-group">
 						<label for="file_04">详情页小图</label>
@@ -257,13 +263,17 @@
 			if (filesLength > 0) {
 				alert('你还有图片未上传');
 			} else {
+
+				var goodsSize = $('#goodsSize').val();
+				goodsSize = goodsSize.split(/\s*\/\s*/).join('、');
+				//console.log(goodsSize)
 				var obj = {
 					goodsType: $('#goodsType').val(),
 					goodsPrice: $('#goodsPrice').val(),
 					goodsOldPrice: $('#goodsOldPrice').val(),
 					goodsSaleNum: $('#goodsSaleNum').val(),
 					goodsLastNum: $('#goodsLastNum').val(),
-					goodsSize: $('#goodsSize').val(),
+					goodsSize: goodsSize,
 					goodsDescription: $('#goodsDescription').val(),
 					goodsText: $('#goodsText').val(),
 					imgList: imgList
@@ -272,7 +282,7 @@
 					data: JSON.stringify(obj)
 				}, function (res) {
 					var res = JSON.parse(res);
-					if(res.status){
+					if (res.status) {
 						alert('商品增加成功');
 					}
 				})
