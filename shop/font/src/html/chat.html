@@ -33,21 +33,39 @@
         })
 
         
-        var socket = io('http://localhost:3000');
+        var socket = io('http://localhost:2333');
         $('.sendbtn').on('click',function(){
             
-            if($('textarea').val()==''){
-                $('sendbtn').attr('disabled',true);
+            if($('textarea').val()===''){
+                $('.sendbtn').attr('disabled',true);
+                if($('textarea').focus()){
+                    $('.sendbtn').attr('disabled',false);
+                }
             }else{
-                $('sendbtn').attr('disabled',false);
+                $('.sendbtn').attr('disabled',false);
                 socket.emit('chat',$('textarea').val());
+                
+                $.ajax({
+                    type:'post',
+                    url:'http://localhost:1234',
+                    async:true,
+                    data:{
+                        news:$('textarea').val()
+                    },
+                    success:function(){
+
+                    }
+                });
                 $('textarea').val("").focus();
-            }  
+            }
+            
         })
         socket.on('getMsg',function(data){
             console.log(data);
             document.querySelector('.msg').innerHTML += '<p class="time">'+new Date().getFullYear()+"-"+(new Date().getMonth()+1)+"-"+new Date().getDate()+ '&nbsp;&nbsp;' +new Date().toLocaleTimeString()+'</p>'+data+'<br>';
         })
+
+
     </script>
 </body>
 </html>
