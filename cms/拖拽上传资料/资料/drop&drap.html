@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+	<style>
+		#dragElement{
+			width: 140px;
+			height: 140px;
+			background: #ccc;
+		}
+		#dropElement{
+			width: 340px;
+			height: 200px;
+			border:1px solid #ddd;
+		}
+	</style>
+</head>
+<body>
+	<div id="dragElement" class="element" draggable="true">drag me</div>
+	<div id="dropElement" class="element">drop here</div>
+
+	<script src="../demo01/jquery-3.1.1.js"></script>
+	<script>
+		/*
+			DataTransfer
+		 * 	它用来给拖动操作中的数据接收与传递提供支持
+		 * 	它并未限定数据的发送方和数据的接收方限定在一个窗口
+		 * 
+		 *  	1.dropEffect 设定操作的目标的效果，或由用户选择的效果。系统会在copy,move,link,none中选择。并根据院中的效果显示相应的拖动对象。
+		 * 		2.effectAllowed 设定允许用于拖动操作的目标效果。通常会在dragstart事件中设定
+		 * 		3.setData(format,data) 以format所指定的格式添加数据（只在dragstart中有效）
+		 * 		4.getData(format) 以format所指定的格式获取数据（只在drop事件中有效）
+		 * 		5.clearData([format]) 以format所指定的格式清除数据，如果没有指定format,则清除所有数据
+		 * 		6.setDragImage(element,x,y) 设定拖动的图像（在dragstart中有效）
+		 * 		7.addElement(element) 设定拖动的图像（在dragstart中有效） 
+		 * 		8.types属性 包含正在拖动数据的format的数组
+		 * 		9.files属性 包含正在拖动文件的File对象数组
+		 */
+		
+		 /*
+		 	$('#dragElement')[0] 事件 dragstart drag dragend
+		 */
+
+		$('#dragElement')[0].ondragstart = function(e){
+			e.dataTransfer.setData('text',e.target.id);
+			var arr = e.dataTransfer.types;
+			console.log('type',arr)
+		}
+	
+		/*
+			$('#dropElement')[0] 事件 dragenter dragover dragleave drop
+		*/
+		$('#dropElement')[0].ondragenter = function(e){
+			//e.preventDefault();
+			console.log('dragenter')
+			var file = e.dataTransfer.files
+			console.log('file',file)
+		}
+		
+		$('#dropElement')[0].ondragover = function(e){
+			e.preventDefault();
+			//console.log('dragover')
+		}
+
+		$('#dropElement')[0].ondragleave = function(){
+			console.log('dragleave')
+		}
+
+		$('#dropElement')[0].ondrop = function(e){
+			e.preventDefault();
+			console.log('drop')
+			var file = e.dataTransfer.files
+			console.log('file',file)
+			var arr = e.dataTransfer.types;
+			console.log('type',arr);
+			var data = e.dataTransfer.getData('text');
+			console.log('data',data)
+			// var filereader = new FileReader();
+			// filereader.readAsDataURL(file[0]);
+			// filereader.onload = function(e){
+			// 	console.log(e.target)
+			// }
+		}
+		
+	</script>
+</body>
+</html>
