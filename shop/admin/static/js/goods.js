@@ -1,15 +1,15 @@
 var goods = {
-	check:function(type,index){
+	check:function(type,index,val){
 		$.ajax({
 			type:"get",
 			url:"http://127.0.0.1:8888/typeFind",
 			data:{
 				type,
-				index
+				index,
+				val
 			},
 			success:function(data){
 				var data =JSON.parse(data);
-				
 				var html = data.map(function(item){
 					return `
 						<tr>
@@ -34,15 +34,16 @@ var goods = {
 			}
 		});
 	},
-	page:function(type){
+	page:function(type,val){
 		$.ajax({
 			url:'http://127.0.0.1:8888/page',
 			type:'get',
 			data:{
-				type
+				type,
+				val
 			},
 			success:function(data){
-				var pageNum = Math.ceil((JSON.parse(data.replace('(*)',''))[0].COUNT)/10);
+				var pageNum = Math.ceil((JSON.parse(data.replace('(*)',''))[0].COUNT)/6);
 				var str = '';
 				for(var i = 1; i <= pageNum; i++){
 					str += `
@@ -50,9 +51,10 @@ var goods = {
 					`
 				};
 				$('.am-g .am-cf span').html('共 '+JSON.parse(data.replace('(*)',''))[0].COUNT+' 条记录');
-				$('.am-pagination').html(str).on('click','li',function(){
+				
+				$('.am-pagination').html(str).off('click','li').on('click','li',function(){
 					var index = Number($(this).text())-1;
-					goods.check(type,index);
+					goods.check(type,index,val);
 				});
 			}
 		});
@@ -103,6 +105,11 @@ var goods = {
 				});
 			}
 		});
+	},
+	searchgoods:function(){
+		var val = $('.am-form-field').val();
+		goods.check('text',null,val);
+		goods.page('text',val);
 	}
 }
 goods.removegoods();
