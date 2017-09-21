@@ -15,7 +15,7 @@ var connection = mysql.createConnection({
 	host: 'localhost',
 	user: 'root',
 	password: '',
-	database: 'first_project'
+	database: 'cpro'
 });
 connection.connect();
 
@@ -42,6 +42,11 @@ var storage = multer.diskStorage({
 var upload = multer({
 	storage: storage
 });
+
+app.get('/',function(req,res){
+	res.send('localhost:3000')
+})
+
 
 app.post('/fileupload', upload.any(), function(req, res, next) {	
 	res.append("Access-Control-Allow-Origin","*");
