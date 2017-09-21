@@ -7,6 +7,8 @@
     <link rel="stylesheet" type="text/css" href="../css/base.css" />
     <link rel="stylesheet" type="text/css" href="../css/common.css" />
     <link rel="stylesheet" type="text/css" href="../css/good_list.css" />
+    <link rel="stylesheet" type="text/css" href="../css/chat.css" />
+    <script type="text/javascript" src="../js/socket.js"></script>
 </head>
 <body>
     <div class="page">
@@ -764,7 +766,7 @@
                 <li><i></i><span>品牌分类</span></li>
                 <li id="rCart"><i><strong>0</strong></i><p><a href="good_cart.html" style="color:#fff">购物车</a><b></b></p></li>
                 <li><i></i><p>我的订单<b></b></p></li>
-                <li><i></i><p>联系客服<b></b></p></li>
+                <li class="rChat"><i></i><p>联系客服<b></b></p></li>
             </ul>
             <ul class="rb_bot">
                 <li id="showWea"><i></i><p style="width:120px;">根据定位显示天气<b></b></p></li>
@@ -776,6 +778,23 @@
         <div class="geo_wea">
         </div>
         
+        <!-- 客服聊天窗口 -->
+        <div class="chat">
+            <div class="title">
+                <span>客服</span>
+                <span id="close">&times;</span>
+            </div>
+            <div class="show">
+                <p class="nohere">-- 客服不在电脑旁，有事请留言 --</p>
+                <p class="msg"></p>
+                
+            </div>
+            <div class="write">
+                <textarea name="" id="" cols="45" rows="2"></textarea>
+                <button class="sendbtn">发送</button>
+            </div>
+        </div>
+
     </div>
     <script type="text/javascript" src="../lib/require.js" data-main="../js/goods_list.js"></script>
     <!-- 根据定位显示天气 -->

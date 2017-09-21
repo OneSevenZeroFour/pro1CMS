@@ -1,8 +1,4 @@
-* { padding: 0; margin: 0; }
-
-body { width: 100%; height: 500px; }
-
-.chat { height: 250px; width: 400px; border: 1px solid #516166; position: fixed; }
+.chat { height: 250px; width: 400px; border: 1px solid #516166; position: fixed; right: 50px; bottom: 10px; display: none; background: #fff; z-index: 999; }
 
 .chat .title { height: 30px; border-bottom: 1px solid #8EACB6; position: relative; background: #B8DFEB; padding-left: 10px; }
 
@@ -16,7 +12,9 @@ body { width: 100%; height: 500px; }
 
 .chat .show .nohere { text-align: center; color: blue; }
 
-.chat .show .time { font-size: 12px; color: pink; }
+.chat .show .time { font-size: 12px; color: #111; }
+
+.chat .show .autores { text-align: center; color: blue; }
 
 .chat .write { padding-top: 5px; padding-left: 5px; position: relative; }
 

@@ -62,7 +62,7 @@
         })
         socket.on('getMsg',function(data){
             console.log(data);
-            document.querySelector('.msg').innerHTML += '<p class="time">'+new Date().getFullYear()+"-"+(new Date().getMonth()+1)+"-"+new Date().getDate()+ '&nbsp;&nbsp;' +new Date().toLocaleTimeString()+'</p>'+data+'<br>';
+            document.querySelector('.msg').innerHTML += '<p class="time">'+new Date().getFullYear()+"-"+(new Date().getMonth()+1)+"-"+new Date().getDate()+ '&nbsp;&nbsp;' +new Date().toLocaleTimeString()+'</p>'+data+'<br>'+'<p class="autores">'+'您的留言已收到，看到会马上回复你哦'+'</p>';
         })
 
 
