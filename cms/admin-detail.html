@@ -112,7 +112,7 @@
 						<div class="form-group col-sm-6">
 							<label for="goodsType" class=" control-label">商品类型</label>
 							<div class="">
-								<select class="form-control" id="goodsType" style="font-size:14px;">
+								<select class="form-control" id="goodsType" style="font-size:14px;" >
 									<option>type1</option>
 									<option>type2</option>
 									<option>type3</option>
@@ -123,7 +123,7 @@
 						<div class="form-group col-sm-6">
 							<label for="goodsText" class=" control-label">商品信息</label>
 							<div class="">
-								<input type="text" class="form-control" id="goodsText">
+								<input type="text" class="form-control" id="goodsText" >
 							</div>
 						</div>
 					</div>
@@ -132,7 +132,7 @@
 						<div class="form-group col-sm-6">
 							<label for="goodsPrice" class="control-label ">优惠价格</label>
 							<div class="">
-								<input type="text" class="form-control" id="goodsPrice">
+								<input type="text" class="form-control" id="goodsPrice" required>
 							</div>
 						</div>
 						<div class="form-group col-sm-6">
@@ -160,26 +160,26 @@
 						<label for="goodsSize" class=" control-label">商品规格</label>
 						<span class="" style="color:#DD4C09;font-size:14px;margin-left:40px;">若有多个型号，型号间用"/"隔开</span>
 						<div class="">
-							<input type="text" class="form-control" id="goodsSize">
+							<input type="text" class="form-control" id="goodsSize" required>
 						</div>
 					</div>
 
 
 					<div class="form-group">
 						<label for="file_01">列表页大图</label>
-						<input id="file_01" name="list_big" multiple type="file" data-show-caption="true">
+						<input id="file_01" name="list_big" multiple type="file" data-show-caption="true" required>
 					</div>
 					<div class="form-group">
 						<label for="file_02">列表页小图</label>
-						<input id="file_02" name="list_small" multiple type="file" data-show-caption="true">
+						<input id="file_02" name="list_small" multiple type="file" data-show-caption="true" required>
 					</div>
 					<div class="form-group">
 						<labeld for="file_03">详情页大图</label>
-							<input id="file_03" name="detail_big" multiple type="file" data-show-caption="true">
+							<input id="file_03" name="detail_big" multiple type="file" data-show-caption="true" required>
 					</div>
 					<div class="form-group">
 						<label for="file_04">详情页小图</label>
-						<input id="file_04" name="detail_small" multiple type="file" data-show-caption="true">
+						<input id="file_04" name="detail_small" multiple type="file" data-show-caption="true" required>
 					</div>
 					<div class="form-group">
 						<label for="file_05">详情描述</label>
@@ -187,7 +187,7 @@
 					</div>
 					<div class="form-group">
 						<label for="goodsDescription" class=" control-label">商品描述</label>
-						<div class="">
+						<div class="" id="descript">
 							<input type="text" class="form-control" id="goodsDescription">
 						</div>
 					</div>
@@ -220,7 +220,7 @@
 	<script src="assets/lib/bootstrap-fileinput-master/js/locales/zh.js"></script>
 	<script>
 		var imgList = {};
-
+		//$('#descript').load('./ueditor.html #lm_editor')
 		$.each($("[type = 'file']"), function (index, ele) {
 			$(ele).fileinput({
 				language: 'zh', //设置语言
