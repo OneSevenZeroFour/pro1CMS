@@ -40,6 +40,22 @@ app.get('/removegoods',function(req,res){
 	require('../module/removegoods.js')(connection,res,mysql,data);
 });
 
+app.get('/gaingoods',function(req,res){
+	var data = req.query;
+	//导入配置连接
+	var connection = require('../module/connection.js')(mysql);
+	//导入ID获取信息模块
+	require('../module/gaingoods.js')(connection,res,mysql,data);
+});
+
+app.get('/amendgoods',function(req,res){
+	var data = req.query;
+	//导入配置连接
+	var connection = require('../module/connection.js')(mysql);
+	//导入修改模块
+	require('../module/amendgoods.js')(connection,res,mysql,data);
+});
+
 //创建服务器
 app.listen(8888);
 console.log('Server running at http://127.0.0.1:8888/');

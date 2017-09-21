@@ -21,8 +21,7 @@ var goods = {
 			                <td>
 				                <div class="am-btn-toolbar">
 				                    <div class="am-btn-group am-btn-group-xs">
-					                    <button class="am-btn am-btn-default am-btn-xs am-text-secondary"><span class="am-icon-pencil-square-o"></span> 编辑</button>
-					                    <button class="am-btn am-btn-default am-btn-xs am-hide-sm-only"><span class="am-icon-copy"></span> 复制</button>
+					                    <button class="am-btn am-btn-default am-btn-xs am-text-secondary redact"><span class="am-icon-pencil-square-o"></span> 编辑</button>
 					                    <button class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only remove"><span class="am-icon-trash-o"></span> 删除</button>
 				                    </div>
 				                </div>
@@ -74,9 +73,13 @@ var goods = {
 		})
 	},
 	amendgoods:function(){
-		
+		$('.table-main tbody').on('click','.redact',function(){
+			var id = Number($(this).parents('tr').children('.goodsId').text());
+			window.location.href = "admin-help.html?id="+id
+		});
 	}
 }
 goods.check();
 goods.page();
 goods.removegoods();
+goods.amendgoods();
