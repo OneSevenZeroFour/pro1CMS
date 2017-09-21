@@ -9,19 +9,13 @@ var app = express();
 app.use(express.static('../static'));
 
 //设置路由
-app.get('/goods',function(req,res){
+
+app.get('/page',function(req,res){
 	var data = req.query;
 	//导入配置连接
 	var connection = require('../module/connection.js')(mysql);
-	//导入查询商品模块
-	require('../module/findGoods.js')(connection,res,mysql,data);
-});
-
-app.get('/page',function(req,res){
-	//导入配置连接
-	var connection = require('../module/connection.js')(mysql);
 	//导入分页模块
-	require('../module/page.js')(connection,res,mysql);
+	require('../module/page.js')(connection,res,mysql,data);
 });
 
 app.get('/addgoods',function(req,res){
@@ -54,6 +48,21 @@ app.get('/amendgoods',function(req,res){
 	var connection = require('../module/connection.js')(mysql);
 	//导入修改模块
 	require('../module/amendgoods.js')(connection,res,mysql,data);
+});
+
+app.get('/goodsType',function(req,res){
+	//导入配置连接
+	var connection = require('../module/connection.js')(mysql);
+	//导入商品类型数量查找模块
+	require('../module/goodsType.js')(connection,res,mysql);
+});
+
+app.get('/typeFind',function(req,res){
+	var data = req.query;
+	//导入配置连接
+	var connection = require('../module/connection.js')(mysql);
+	//导入商品类型查找模块
+	require('../module/typeFind.js')(connection,res,mysql,data);
 });
 
 //创建服务器
