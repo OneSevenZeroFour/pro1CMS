@@ -1,10 +1,11 @@
 var goods = {
-	check:function(index){
+	check:function(type,index){
 		$.ajax({
-			url:'http://127.0.0.1:8888/goods',
-			type:'get',
+			type:"get",
+			url:"http://127.0.0.1:8888/typeFind",
 			data:{
-				index:index
+				type,
+				index
 			},
 			success:function(data){
 				var data =JSON.parse(data);
@@ -33,22 +34,25 @@ var goods = {
 			}
 		});
 	},
-	page:function(){
+	page:function(type){
 		$.ajax({
 			url:'http://127.0.0.1:8888/page',
 			type:'get',
+			data:{
+				type
+			},
 			success:function(data){
 				var pageNum = Math.ceil((JSON.parse(data.replace('(*)',''))[0].COUNT)/10);
 				var str = '';
-				for(var i = 1; i <= 3; i++){
+				for(var i = 1; i <= pageNum; i++){
 					str += `
 						<li><a href="#">${i}</a></li>
 					`
 				};
 				$('.am-g .am-cf span').html('共 '+JSON.parse(data.replace('(*)',''))[0].COUNT+' 条记录');
 				$('.am-pagination').html(str).on('click','li',function(){
-					var data = Number($(this).text())-1;
-					goods.check(data);
+					var index = Number($(this).text())-1;
+					goods.check(type,index);
 				});
 			}
 		});
@@ -77,9 +81,30 @@ var goods = {
 			var id = Number($(this).parents('tr').children('.goodsId').text());
 			window.location.href = "admin-help.html?id="+id
 		});
+	},
+	goodsType:function(){
+		$.ajax({
+			type:"get",
+			url:"http://127.0.0.1:8888/goodsType",
+			success:function(data){
+				var data = JSON.parse(data);
+				var html = data.map(function(item){
+					return `
+						 <option value="${item.good_type}">${item.good_type}</option>
+					`
+				}).join('');
+				
+				goods.check('*');
+				goods.page('*');
+				$('.lb').html('<option value="*">所有类别</option>'+html).on('change',function(){
+					var type = $(this).val();
+					goods.check(type);
+					goods.page(type);
+				});
+			}
+		});
 	}
 }
-goods.check();
-goods.page();
 goods.removegoods();
 goods.amendgoods();
+goods.goodsType();
