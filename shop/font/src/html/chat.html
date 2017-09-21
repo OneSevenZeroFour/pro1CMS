@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="../css/chat.css" />
+    
+</head>
+<body>
+    <div class="chat">
+        <div class="title">
+            <span>客服</span>
+            <span id="close">&times;</span>
+        </div>
+        <div class="show">
+            <p class="nohere">-- 客服现在不在电脑旁，有事请留言哦 --</p>
+            <p class="msg"></p>
+            
+        </div>
+        <div class="write">
+            <textarea name="" id="" cols="45" rows="2"></textarea>
+            <button class="sendbtn">发送</button>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="../lib/jquery-3.2.1.js"></script>
+    <script type="text/javascript" src="../lib/jquery-ui.js"></script>
+    <script type="text/javascript" src="../js/socket.js"></script>
+    <script type="text/javascript">
+        $('.chat').draggable({containment:$('body')});
+        $('#close').on('click',function(){
+            $('.chat').hide();
+        })
+
+        
+        var socket = io('http://localhost:3000');
+        $('.sendbtn').on('click',function(){
+            
+            if($('textarea').val()==''){
+                $('sendbtn').attr('disabled',true);
+            }else{
+                $('sendbtn').attr('disabled',false);
+                socket.emit('chat',$('textarea').val());
+                $('textarea').val("").focus();
+            }  
+        })
+        socket.on('getMsg',function(data){
+            console.log(data);
+            document.querySelector('.msg').innerHTML += '<p class="time">'+new Date().getFullYear()+"-"+(new Date().getMonth()+1)+"-"+new Date().getDate()+ '&nbsp;&nbsp;' +new Date().toLocaleTimeString()+'</p>'+data+'<br>';
+        })
+    </script>
+</body>
+</html>
