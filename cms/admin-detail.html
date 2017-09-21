@@ -381,7 +381,8 @@
 					goodsSize: goodsSize,
 					goodsDescription: $('#goodsDescription').val(),
 					goodsText: $('#goodsText').val(),
-					imgList: imgList
+					imgList: imgList,
+					goodsDescription: goodsDescription
 				}
 				$.post('http://localhost:3000/insert', {
 					data: JSON.stringify(obj)
