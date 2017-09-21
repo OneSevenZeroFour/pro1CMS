@@ -27,16 +27,37 @@
 			color: #666;
 		}
 		/*打开文编编辑器按钮及文本编辑器内部样式*/
-		 #lm_editor{
-        	/*margin:0*/
-            width:100%;
-            height: 100%;
-            /*margin: 0 auto;*/
-        }
-        #editor{margin: 20px auto;}
-        #btns{margin: 0 auto;width:500px;}
-        .complete{width: 500px;line-height:30px;margin:20px auto;}
-        .complete button{margin:0 50px;line-height: 30px;background-color:#2e6da4;border:0;float:left;color:#fff;}
+
+		#lm_editor {
+			/*margin:0*/
+			width: 100%;
+			height: 100%;
+			/*margin: 0 auto;*/
+		}
+
+		#editor {
+			margin: 20px auto;
+		}
+
+		#btns {
+			margin: 0 auto;
+			width: 500px;
+		}
+
+		.complete {
+			width: 500px;
+			line-height: 30px;
+			margin: 20px auto;
+		}
+
+		.complete button {
+			margin: 0 50px;
+			line-height: 30px;
+			background-color: #2e6da4;
+			border: 0;
+			float: left;
+			color: #fff;
+		}
 	</style>
 </head>
 
@@ -117,13 +138,14 @@
 					<h4>添加商品</h4>
 				</div>
 
-				<form action="" method="post" name="detail_form" id="detailForm">
+				<form action="javascript:void(0)" method="post" name="detail_form" id="detailForm">
 					<div class="row">
 
 						<div class="form-group col-sm-6">
 							<label for="goodsType" class=" control-label">商品类型</label>
+							<span class="" style="color:red;font-size:14px;margin-left:12px;">* 必选</span>
 							<div class="">
-								<select class="form-control" id="goodsType" style="font-size:14px;" >
+								<select class="form-control" id="goodsType" style="font-size:14px;">
 									<option>type1</option>
 									<option>type2</option>
 									<option>type3</option>
@@ -134,7 +156,7 @@
 						<div class="form-group col-sm-6">
 							<label for="goodsText" class=" control-label">商品信息</label>
 							<div class="">
-								<input type="text" class="form-control" id="goodsText" >
+								<input type="text" class="form-control" id="goodsText">
 							</div>
 						</div>
 					</div>
@@ -142,6 +164,7 @@
 					<div class="row">
 						<div class="form-group col-sm-6">
 							<label for="goodsPrice" class="control-label ">优惠价格</label>
+							<span class="" style="color:red;font-size:14px;margin-left:12px;">* 必填</span>
 							<div class="">
 								<input type="text" class="form-control" id="goodsPrice" required>
 							</div>
@@ -169,6 +192,7 @@
 					</div>
 					<div class="form-group">
 						<label for="goodsSize" class=" control-label">商品规格</label>
+						<span class="" style="color:red;font-size:14px;margin-left:12px;">* 必选</span>
 						<span class="" style="color:#DD4C09;font-size:14px;margin-left:40px;">若有多个型号，型号间用"/"隔开</span>
 						<div class="">
 							<input type="text" class="form-control" id="goodsSize" required>
@@ -178,30 +202,35 @@
 
 					<div class="form-group">
 						<label for="file_01">列表页大图</label>
-						<input id="file_01" name="list_big" multiple type="file" data-show-caption="true" required>
+						<span class="" style="color:red;font-size:14px;margin-left:12px;">* 必选</span>
+						<input id="file_01" name="list_big" multiple type="file" data-show-caption="true">
 					</div>
 					<div class="form-group">
 						<label for="file_02">列表页小图</label>
-						<input id="file_02" name="list_small" multiple type="file" data-show-caption="true" required>
+						<span class="" style="color:red;font-size:14px;margin-left:12px;">* 必选</span>
+						<input id="file_02" name="list_small" multiple type="file" data-show-caption="true">
 					</div>
 					<div class="form-group">
 						<labeld for="file_03">详情页大图</label>
-							<input id="file_03" name="detail_big" multiple type="file" data-show-caption="true" required>
+							<span class="" style="color:red;font-size:14px;margin-left:12px;">* 必选</span>
+							<input id="file_03" name="detail_big" multiple type="file" data-show-caption="true">
 					</div>
 					<div class="form-group">
 						<label for="file_04">详情页小图</label>
-						<input id="file_04" name="detail_small" multiple type="file" data-show-caption="true" required>
+						<span class="" style="color:red;font-size:14px;margin-left:12px;">* 必选</span>
+						<input id="file_04" name="detail_small" multiple type="file" data-show-caption="true">
 					</div>
 					<div class="form-group">
 						<label for="file_05">详情描述</label>
 						<input id="file_05" name="descripImg" multiple type="file" data-show-caption="true">
 					</div>
-					<div class="form-group">
+					<div class="form-group" style="overflow:hidden;">
 						<label for="goodsDescription" class=" control-label">商品描述</label>
 						<div id="lm_editor">
 							<script id="editor" type="text/plain" style="width:1024px;height:500px;"></script>
 						</div>
 						<div id="btns">
+
 							<button onclick="getContent()" type="button">获得内容</button>
 							<button onclick="hasContent()" type="button">判断是否有内容</button>
 							<button id="enable" onclick="setEnabled()" type="button">可以编辑</button>
@@ -214,21 +243,22 @@
 							<button type="button" onclick=" UE.getEditor('editor').setShow();displayYesBtns()">开始编辑商品详情</button>
 							<button type="button" onclick=" UE.getEditor('editor').setHide();getContent();displayNoBtns()">完成详情编辑</button>
 						</div>
+
 						</div>
 					</div>
-					<div class="upload" style="margin-top:20px;">
+					<div class="upload form-group" style="margin-top:20px;">
 						<input type="submit" id="sub_Btn" value="提交" class="form-control btn-primary" style="width:100px;">
 					</div>
 				</form>
-
 			</div>
-
-			<footer class="admin-content-footer">
-				<hr>
-				<p class="am-padding-left">© 2014 AllMobilize, Inc. Licensed under MIT license.</p>
-			</footer>
 		</div>
-		<!-- content end -->
+
+		<footer class="admin-content-footer">
+			<hr>
+			<p class="am-padding-left">© 2014 AllMobilize, Inc. Licensed under MIT license.</p>
+		</footer>
+	</div>
+	<!-- content end -->
 
 	</div>
 
@@ -244,83 +274,81 @@
 	<!--建议手动加在语言，避免在ie下有时因为加载语言失败导致编辑器加载失败-->
 	<!--这里加载的语言文件会覆盖你在配置项目里添加的语言类型，比如你在配置项目里配置的是英文，这里加载的中文，那最后就是中文-->
 	<script type="text/javascript" charset="utf-8" src="ueditor/lang/zh-cn/zh-cn.js"></script>
-	
+
 	<script src="assets/lib/jquery-3.1.1.js"></script>
 	<script src="assets/lib/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
 	<script src="assets/lib/bootstrap-fileinput-master/js/fileinput.min.js"></script>
 	<script src="assets/lib/bootstrap-fileinput-master/js/locales/zh.js"></script>
-	
+
 	<script>
-		  //实例化编辑器
-    //建议使用工厂方法getEditor创建和引用编辑器实例，如果在某个闭包下引用该编辑器，直接调用UE.getEditor('editor')就能拿到相关的实例
-    var ue = UE.getEditor('editor');
-    
-    //一开始文本编辑器是隐藏的，点击编辑按钮后展开
-    document.querySelector("#editor").style.display="none";
-    displayNoBtns();
-	//设置一个变量接收编辑的内容得到的代码；
-    var goodsDescription ="";
-    //隐藏编辑器内的按钮
-    function displayNoBtns(){
-    	(document.querySelector('#btns')).style.display = 'none';
-    	document.querySelector("#editor").style.display="none";
-    	
-    }
-	//  显示编辑器内的按钮
-    function displayYesBtns(){
-    	(document.querySelector('#btns')).style.display = 'block';
-    document.querySelector("#editor").style.display="block";
-    	
-    }
-    //得到编辑的内容代码
-    function getContent() {
-        var arr = [];
-//      arr.push("使用editor.getContent()方法可以获得编辑器的内容");
-//      arr.push("内容为：");
-        arr.push(UE.getEditor('editor').getContent());
-        goodsDescription = arr.join("\n"); 
-        alert(goodsDescription);
-    }
-    //不可编辑
-    function setDisabled() {
-        UE.getEditor('editor').setDisabled('fullscreen');
-        disableBtn("enable");
-    }
-	//	可编辑	
-    function setEnabled() {
-        UE.getEditor('editor').setEnabled();
-        enableBtn();
-    }
-    //编辑器是否有内容
-    function hasContent() {
-        var arr = [];
-        arr.push("使用editor.hasContents()方法判断编辑器里是否有内容");
-        arr.push("判断结果为：");
-        arr.push(UE.getEditor('editor').hasContents());
-        alert(arr.join("\n"));
-    }
-    function disableBtn(str) {
-        var div = document.getElementById('btns');
-        var btns = UE.dom.domUtils.getElementsByTagName(div, "button");
-        for (var i = 0, btn; btn = btns[i++];) {
-            if (btn.id == str) {
-                UE.dom.domUtils.removeAttributes(btn, ["disabled"]);
-            } else {
-                btn.setAttribute("disabled", "true");
-            }
-        }
-    }
-    function enableBtn() {
-        var div = document.getElementById('btns');
-        var btns = UE.dom.domUtils.getElementsByTagName(div, "button");
-        for (var i = 0, btn; btn = btns[i++];) {
-            UE.dom.domUtils.removeAttributes(btn, ["disabled"]);
-        }
-    }
-    
-    
-    
-    
+
+		//实例化编辑器
+		//建议使用工厂方法getEditor创建和引用编辑器实例，如果在某个闭包下引用该编辑器，直接调用UE.getEditor('editor')就能拿到相关的实例
+		var ue = UE.getEditor('editor');
+		
+		//一开始文本编辑器是隐藏的，点击编辑按钮后展开
+		document.querySelector("#editor").style.display="none";
+		displayNoBtns();
+		//设置一个变量接收编辑的内容得到的代码；
+		var goodsDescription ="";
+		//隐藏编辑器内的按钮
+		function displayNoBtns(){
+			(document.querySelector('#btns')).style.display = 'none';
+			document.querySelector("#editor").style.display="none";
+			
+		}
+		//  显示编辑器内的按钮
+		function displayYesBtns(){
+			(document.querySelector('#btns')).style.display = 'block';
+		document.querySelector("#editor").style.display="block";
+			
+		}
+		//得到编辑的内容代码
+		function getContent() {
+			var arr = [];
+			//      arr.push("使用editor.getContent()方法可以获得编辑器的内容");
+			//      arr.push("内容为：");
+			arr.push(UE.getEditor('editor').getContent());
+			goodsDescription = arr.join("\n"); 
+			alert(goodsDescription);
+		}
+		//不可编辑
+		function setDisabled() {
+			UE.getEditor('editor').setDisabled('fullscreen');
+			disableBtn("enable");
+		}
+		//	可编辑	
+		function setEnabled() {
+			UE.getEditor('editor').setEnabled();
+			enableBtn();
+		}
+		//编辑器是否有内容
+		function hasContent() {
+			var arr = [];
+			arr.push("使用editor.hasContents()方法判断编辑器里是否有内容");
+			arr.push("判断结果为：");
+			arr.push(UE.getEditor('editor').hasContents());
+			alert(arr.join("\n"));
+		}
+		function disableBtn(str) {
+			var div = document.getElementById('btns');
+			var btns = UE.dom.domUtils.getElementsByTagName(div, "button");
+			for (var i = 0, btn; btn = btns[i++];) {
+				if (btn.id == str) {
+					UE.dom.domUtils.removeAttributes(btn, ["disabled"]);
+				} else {
+					btn.setAttribute("disabled", "true");
+				}
+			}
+		}
+		function enableBtn() {
+			var div = document.getElementById('btns');
+			var btns = UE.dom.domUtils.getElementsByTagName(div, "button");
+			for (var i = 0, btn; btn = btns[i++];) {
+				UE.dom.domUtils.removeAttributes(btn, ["disabled"]);
+			}
+		}
+
 		var imgList = {};
 		//$('#descript').load('./ueditor.html #lm_editor')
 		$.each($("[type = 'file']"), function (index, ele) {
@@ -354,6 +382,17 @@
 			});
 		})
 
+		//非空判断
+		function isNull(dom){
+			//console.log(2333,$(dom).parents('.form-group'))
+			$(dom).parents('.form-group').addClass('has-error');
+			$(dom).blur(function(e){
+				e.preventDefault();
+				//console.log(1222)
+				$(this).val() && $(this).parents('.form-group').removeClass('has-error');
+			})
+		}
+
 		$('#sub_Btn').click(function (e) {
 			e.preventDefault();
 			var filesLength = 0;
@@ -365,30 +404,38 @@
 			if (filesLength > 0) {
 				alert('你还有图片未上传');
 			} else {
-
+				//输入数据判定
 				var goodsSize = $('#goodsSize').val();
 				goodsSize = goodsSize.split(/\s*\/\s*/).join('、');
-				//console.log(goodsSize)
-				var obj = {
-					goodsType: $('#goodsType').val(),
-					goodsPrice: $('#goodsPrice').val(),
-					goodsOldPrice: $('#goodsOldPrice').val(),
-					goodsSaleNum: $('#goodsSaleNum').val(),
-					goodsLastNum: $('#goodsLastNum').val(),
-					goodsSize: goodsSize,
-					goodsDescription: $('#goodsDescription').val(),
-					goodsText: $('#goodsText').val(),
-					imgList: imgList,
-					goodsDescription: goodsDescription
-				}
-				$.post('http://localhost:3000/insert', {
-					data: JSON.stringify(obj)
-				}, function (res) {
-					var res = JSON.parse(res);
-					if (res.status) {
-						alert('商品增加成功');
+				var str = goodsDescription;
+				
+				if(!$('#goodsPrice').val() || !$('#goodsSize').val()){
+					alert('必填字段不能为空');
+					!$('#goodsPrice').val() && isNull($('#goodsPrice')[0]);
+					!$('#goodsSize').val() && isNull($('#goodsSize')[0]);
+					
+				}else {
+					var obj = {
+						goodsType: $('#goodsType').val(),
+						goodsPrice: $('#goodsPrice').val(),
+						goodsOldPrice: $('#goodsOldPrice').val(),
+						goodsSaleNum: $('#goodsSaleNum').val(),
+						goodsLastNum: $('#goodsLastNum').val(),
+						goodsSize: goodsSize,
+						goodsDescription: str,
+						goodsText: $('#goodsText').val(),
+						imgList: imgList,
+						goodsDescription: goodsDescription
 					}
-				})
+					$.post('http://localhost:3000/insert', {
+						data: JSON.stringify(obj)
+					}, function (res) {
+						var res = JSON.parse(res);
+						if (res.status) {
+							alert('商品增加成功');
+						}
+					})
+				}
 			}
 		})
 	</script>
