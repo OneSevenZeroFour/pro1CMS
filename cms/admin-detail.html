@@ -202,17 +202,17 @@
 							<script id="editor" type="text/plain" style="width:1024px;height:500px;"></script>
 						</div>
 						<div id="btns">
-							<button onclick="getContent()">获得内容</button>
-							<button onclick="hasContent()">判断是否有内容</button>
-							<button id="enable" onclick="setEnabled()">可以编辑</button>
-							<button onclick="setDisabled()">不可编辑</button>
+							<button onclick="getContent()" type="button">获得内容</button>
+							<button onclick="hasContent()" type="button">判断是否有内容</button>
+							<button id="enable" onclick="setEnabled()" type="button">可以编辑</button>
+							<button onclick="setDisabled()" type="button">不可编辑</button>
 						
 						</div>
 						<div class="complete">
 							<!--完成编辑后隐藏富文本编辑器，得到编辑的代码-->
 							
-							<button onclick=" UE.getEditor('editor').setShow();displayYesBtns()">开始编辑商品详情</button>
-							<button onclick=" UE.getEditor('editor').setHide();getContent();displayNoBtns()">完成详情编辑</button>
+							<button type="button" onclick=" UE.getEditor('editor').setShow();displayYesBtns()">开始编辑商品详情</button>
+							<button type="button" onclick=" UE.getEditor('editor').setHide();getContent();displayNoBtns()">完成详情编辑</button>
 						</div>
 						</div>
 					</div>
@@ -256,11 +256,8 @@
     var ue = UE.getEditor('editor');
     
     //一开始文本编辑器是隐藏的，点击编辑按钮后展开
-    
-    
-    //此处为何不能实现功能，求助大神
-//  document.querySelector("#editor").style.display="none";
-//  displayNoBtns();
+    document.querySelector("#editor").style.display="none";
+    displayNoBtns();
 	//设置一个变量接收编辑的内容得到的代码；
     var goodsDescription ="";
     //隐藏编辑器内的按钮
