@@ -9,19 +9,27 @@ var addgoods={
 			var last_num = $('#last_num').val();
 			var sizes = $('#sizes').val();
 			
-			$.ajax({
-				url:'http://127.0.0.1:8888/addgoods',
-				type:'get',
-				data:{
-					text,
-					price,
-					old_price,
-					good_type,
-					sale_num,
-					last_num,
-					sizes,
-				}
-			});		
+			var r = window.confirm('是否提交商品信息？');
+			
+			if(r == true){
+				$.ajax({
+					url:'http://127.0.0.1:8888/addgoods',
+					type:'get',
+					data:{
+						text,
+						price,
+						old_price,
+						good_type,
+						sale_num,
+						last_num,
+						sizes,
+					},
+					success:function(data){
+						alert(data);
+						window.location.href = "admin-table.html";
+					}
+				});						
+			};
 		});
 	},
 	gain:function(){
@@ -52,23 +60,29 @@ var addgoods={
 					var last_num = $('#last_num').val();
 					var sizes = $('#sizes').val();
 					
-					$.ajax({
-						url:'http://127.0.0.1:8888/amendgoods',
-						type:'get',
-						data:{
-							id,
-							text,
-							price,
-							old_price,
-							good_type,
-							sale_num,
-							last_num,
-							sizes,
-						},
-						success:function(data){
-							console.log(data)
-						}
-					});			
+					var r = window.confirm('是否修改商品信息？');
+					
+					if(r == true){
+						$.ajax({
+							url:'http://127.0.0.1:8888/amendgoods',
+							type:'get',
+							data:{
+								id,
+								text,
+								price,
+								old_price,
+								good_type,
+								sale_num,
+								last_num,
+								sizes,
+							},
+							success:function(data){
+								alert(data);
+								window.location.href = "admin-table.html";
+							}
+						});														
+					};
+					
 				});
 			}
 		});

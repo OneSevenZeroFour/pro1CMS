@@ -5,7 +5,7 @@ module.exports = function addGoods(connection,res,mysql,data){
 		if(err){
 			throw err;
 		}else{
-			res.send(JSON.stringify(result));
+			res.send('商品已新增');
 		};
 	});
 	

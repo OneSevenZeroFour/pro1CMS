@@ -73,6 +73,10 @@ var goods = {
 					url:"http://127.0.0.1:8888/removegoods",
 					data:{
 						id
+					},
+					success:function(data){
+						alert(data);
+						window.location.href = "admin-table.html";
 					}
 				});
 			}
