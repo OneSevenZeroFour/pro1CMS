@@ -4,6 +4,7 @@ var mysql = require('mysql');
 
 //创建框架
 var app = express();
+//var router = express.Router();
 
 //设置静态文件夹
 app.use(express.static('../static'));
