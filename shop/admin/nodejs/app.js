@@ -69,6 +69,14 @@ app.get('/typeFind',function(req,res){
 	require('../module/typeFind.js')(connection,res,mysql,data);
 });
 
+app.get('/mhsearch',function(req,res){
+	var data = req.query;
+	//导入配置连接
+	var connection = require('../module/connection.js')(mysql);
+	//导入商品类型查找模块
+	require('../module/mhsearch.js')(connection,res,mysql,data);
+});
+
 //创建服务器
 app.listen(8888);
 console.log('Server running at http://127.0.0.1:8888/');

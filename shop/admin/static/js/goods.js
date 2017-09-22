@@ -114,8 +114,51 @@ var goods = {
 		var val = $('.am-form-field').val();
 		goods.check('text',null,val);
 		goods.page('text',val);
+	},
+	mhsearch:function(){
+		var timer;
+		$('.am-form-field')[0].oninput = function(){
+			clearTimeout(timer);
+			timer = setTimeout(function(){
+				var val = $('.am-form-field').val();
+				$.ajax({
+					type:"get",
+					url:"http://127.0.0.1:8888/mhsearch",
+					data:{
+						val
+					},
+					success:function(data){
+						var data =JSON.parse(data);
+						if(data.length > 0){
+							var html = data.map(function(item){
+								return`
+									<li style="list-style: none; height: 25px; overflow: hidden; padding:2px 10px">${item.text}</li>
+								`
+							}).join('');
+							$('.shnn').show().html(html);
+					
+						}else{
+							$('.shnn').hide();
+						}
+					}
+				});				
+			},200);
+		};
+		$('.am-form-field').blur(function(){
+			setTimeout(function(){
+				$('.shnn').hide();				
+			},200);
+		});
+		$('.shnn').on('mousemove','li',function(){
+			$(this).css('background','#ddd')
+		}).on('mouseout','li',function(){
+			$(this).css('background','#fff')
+		}).on('click','li',function(){
+			$('.am-form-field').val($(this).text());
+		});
 	}
 }
 goods.removegoods();
 goods.amendgoods();
 goods.goodsType();
+goods.mhsearch();
