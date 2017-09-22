@@ -22,12 +22,8 @@ app.get('/addgoods',function(req,res){
 	var data = req.query;
 	//导入配置连接
 	var connection = require('../module/connection.js')(mysql);
-	//导入添加模块
+//	//导入添加模块
 	require('../module/addGoods.js')(connection,res,mysql,data);
-	//导入配置连接
-	var connection = require('../module/connection.js')(mysql);
-	//导入类别添加模块
-	require('../module/addtype.js')(connection,res,mysql,data);
 });
 
 app.get('/removegoods',function(req,res){

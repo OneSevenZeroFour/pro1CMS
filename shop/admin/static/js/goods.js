@@ -46,14 +46,21 @@ var goods = {
 				var pageNum = Math.ceil((JSON.parse(data.replace('(*)',''))[0].COUNT)/6);
 				var str = '';
 				for(var i = 1; i <= pageNum; i++){
-					str += `
-						<li><a href="#">${i}</a></li>
-					`
+					if(i == 1){
+						str += `
+							<li class='am-active'><a href="#">${i}</a></li>
+						`
+					}else{
+						str += `
+							<li><a href="#">${i}</a></li>
+						`						
+					}
 				};
 				$('.am-g .am-cf span').html('共 '+JSON.parse(data.replace('(*)',''))[0].COUNT+' 条记录');
 				
 				$('.am-pagination').html(str).off('click','li').on('click','li',function(){
 					var index = Number($(this).text())-1;
+					$(this).addClass('am-active').siblings('li').removeClass('am-active');
 					goods.check(type,index,val);
 				});
 			}
