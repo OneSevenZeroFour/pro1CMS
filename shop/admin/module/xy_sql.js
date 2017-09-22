@@ -4,6 +4,24 @@
 * @Last Modified by:   Marte
 * @Last Modified time: 2017-09-21 16:15:55
 */
+
+var connection = require('./connection')();
+
+module.exports = function(res, data){
+	res.append("Access-Control-Allow-Origin","*");
+	var msg = (data.split('='))[1];
+	msg = decodeURI(msg);
+	console.log(msg);
+
+	//connection.connect();
+	connection.query(`insert into news (message) values ("${msg}")`, function(error, results, fields) {
+		if(error) throw error;
+		console.log('The solution is: ', results);    
+	});
+	//connection.end();
+}
+// var app = express();
+/*
 var http = require("http");
 var url = require('url');
 var querystring = require('querystring');
@@ -16,8 +34,8 @@ var connection = mysql.createConnection({
     database:'first_project'
 });
 connection.connect();
-
-// var app = express();
+*/
+/*
 http.createServer(function(req,res){
     var data = '';
     req.on('data',function(chunk){
@@ -44,3 +62,4 @@ http.createServer(function(req,res){
 
 // app.listen(1234);
 console.log("已连接");
+*/

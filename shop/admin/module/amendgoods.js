@@ -1,6 +1,7 @@
-module.exports = function amendgoods(connection,res,mysql,data){
-	connection.connect();
+var connection = require('./connection')();
 
+module.exports = function amendgoods(res,data){
+	//connection.connect();
 	connection.query('UPDATE goods SET text="'+data.text+'",price="'+data.price+'",old_price="'+data.old_price+'",good_type="'+data.good_type+'",sale_num="'+data.sale_num+'",last_num="'+data.last_num+'",sizes="'+data.sizes+'" WHERE good_id="'+data.id+'"',function(err,result,fields){
 		if(err){
 			throw err;
@@ -9,5 +10,5 @@ module.exports = function amendgoods(connection,res,mysql,data){
 		};
 	});
 	
-	connection.end();
+	//connection.end();
 }

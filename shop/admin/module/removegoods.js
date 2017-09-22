@@ -1,5 +1,7 @@
-module.exports = function addGoods(connection,res,mysql,data){
-	connection.connect();
+var connection = require('./connection')();
+
+module.exports = function addGoods(res,data){
+	//connection.connect();
 	
 	connection.query('DELETE FROM goods WHERE good_id="'+data.id+'"',function(err,result,fields){
 		if(err){
@@ -9,5 +11,5 @@ module.exports = function addGoods(connection,res,mysql,data){
 		};
 	});
 	
-	connection.end();
+	//connection.end();
 }

@@ -1,5 +1,7 @@
-module.exports = function mhsearch(connection,res,mysql,data){
-	connection.connect();
+var connection = require('./connection')();
+
+module.exports = function mhsearch(res,data){
+	//connection.connect();
 	
 	connection.query('SELECT * FROM goods WHERE text LIKE "%'+data.val+'%"',function(err,result,fields){
 		if(err){
@@ -9,5 +11,5 @@ module.exports = function mhsearch(connection,res,mysql,data){
 		};
 	});
 
-	connection.end();
+	//connection.end();
 }

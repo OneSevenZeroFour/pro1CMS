@@ -1,5 +1,7 @@
-module.exports = function goodsType(connection,res,mysql,data){
-	connection.connect();
+var connection = require('./connection')();
+//console.log(connection)
+module.exports = function goodsType(res){
+	//connection.connect();
 	
 	connection.query('SELECT DISTINCT good_type FROM goods',function(err,result,fields){
 		if(err){
@@ -8,5 +10,5 @@ module.exports = function goodsType(connection,res,mysql,data){
 			res.send(JSON.stringify(result));
 		};
 	});
-	connection.end();
+	//connection.end();
 }

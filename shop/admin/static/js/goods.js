@@ -67,7 +67,7 @@ var goods = {
 		});
 	},
 	addgoods:function(){
-		window.location.href = "admin-help.html"
+		window.location.href = "admin-detail.html"
 	},
 	removegoods:function(){
 		$('.table-main tbody').on('click','.remove',function(){
@@ -92,7 +92,7 @@ var goods = {
 	amendgoods:function(){
 		$('.table-main tbody').on('click','.redact',function(){
 			var id = Number($(this).parents('tr').children('.goodsId').text());
-			window.location.href = "admin-help.html?id="+id
+			window.location.href = "admin-detail.html?id="+id
 		});
 	},
 	goodsType:function(){

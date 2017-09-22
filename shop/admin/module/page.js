@@ -1,4 +1,6 @@
-module.exports = function page(connection,res,mysql,data){
+var connection = require('./connection')();
+
+module.exports = function page(res,data){
 	var s = ''
 	
 	if(data.type == '*'){
@@ -9,7 +11,7 @@ module.exports = function page(connection,res,mysql,data){
 		var s = 'SELECT COUNT(*) FROM goods WHERE good_type="'+data.type+'"';
 	}
 	
-	connection.connect();
+	//connection.connect();
 	
 	connection.query(s,function(err,result,fields){
 		if(err){
@@ -19,5 +21,5 @@ module.exports = function page(connection,res,mysql,data){
 		};
 	});
 	
-	connection.end();
+	//connection.end();
 };

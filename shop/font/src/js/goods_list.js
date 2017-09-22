@@ -42,7 +42,7 @@ require(['config'],function(){
                 $('.chat').hide();
             });
             
-            var socket = io('http://localhost:2333');
+            var socket = io('http://127.0.0.1:8888');
             $('.sendbtn').on('click',function(){
                 
                 if($('textarea').val()===''){
@@ -56,7 +56,7 @@ require(['config'],function(){
                     
                     $.ajax({
                         type:'post',
-                        url:'http://localhost:1234',
+                        url:'http://127.0.0.1:8888',
                         async:true,
                         data:{
                             news:$('textarea').val()
