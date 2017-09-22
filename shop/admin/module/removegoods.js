@@ -5,8 +5,7 @@ module.exports = function addGoods(connection,res,mysql,data){
 		if(err){
 			throw err;
 		}else{
-			res.send(JSON.stringify(result));
-			console.log('删除成功')
+			res.send('删除成功');
 		};
 	});
 	

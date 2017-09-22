@@ -58,6 +58,11 @@
 			float: left;
 			color: #fff;
 		}
+		.describe_img_preview img{
+			width: 150px;
+			height: 190px;
+			margin: 0 10px;
+		}
 	</style>
 </head>
 
@@ -230,7 +235,10 @@
 							<script id="editor" type="text/plain" style="width:1024px;height:500px;">
 								
 							</script>
-							<p>商品描述图片： <input id="detail_img" type="file" name="logo" value="上传图片" accept="image/gif,image/jpeg,image/jpg,image/png"/><input type="button" value="上传" onclick="doUpload()" /></p>
+							<div class="describe_img_preview">
+								<p>商品预览</p>
+							</div>
+							<p>商品描述图片： <input id="detail_img" type="file" name="logo" value="上传图片" accept="image/gif,image/jpeg,image/jpg,image/png" multiple="mutiple"/><input type="button" value="上传" onclick="doUpload()" /></p>
 						</div>
 						
 			
@@ -286,11 +294,31 @@
 	<script src="assets/lib/bootstrap-fileinput-master/js/locales/zh.js"></script>
 
 	<script>
-//		商品介绍描述图片上传
+		//商品图片预览
+		//预览
+		$('#detail_img').change(function(){
+			$('.describe_img_preview').children('img').remove();
+			var imgs_obj =this.files;
+			console.log(imgs_obj);
+			for(var i=0;i<imgs_obj.length;i++){
+				var imgStr =`<img src="${window.URL.createObjectURL(imgs_obj[i])}"/>`;
+				$('.describe_img_preview').append(imgStr);
+			}
+		})
+		//商品介绍描述图片上传
 		function doUpload() { 
+			$('.describe_img_preview').children('img').remove();
 			var formDate =new FormData();
-				console.log($('#detail_img')[0].files);
-				formDate.append('file',$('#detail_img')[0].files[0]);
+				//console.log($('#detail_img')[0].files);
+				//得到所有的图片，得到对象
+				var detail_imgs_obj = $('#detail_img')[0].files;
+				//console.log( detail_imgs_obj);
+				//遍历对象，并得到每张图片的含有图片信息的对象
+				for(var attr in detail_imgs_obj){
+					//console.log(attr)
+					//将每张图片信息都写入formDate内
+					formDate.append('file',detail_imgs_obj[attr]);
+				}
 			$.ajax({
 				url: 'http://localhost:3000/fileupload',
 				type: 'POST',
@@ -299,24 +327,26 @@
 				processData: false,
 				contentType: false,
 				success: function(data) {
-					var imgName = (JSON.parse(data).imgUrl)[0];
-					console.log(imgName);
+					//console.log(data);
+					//{"status":"success","imgUrl":["file-1506049908556.jpg","file-1506049908556.jpg","file-1506049908699.jpg","file-1506049908719.jpg","file-1506049908720.jpg"]}
+					//图片名数组
+					var imgNameArr = (JSON.parse(data).imgUrl);
+					//console.log(imgNameArr);
+					//编辑器元素
 					var htmlEditor = $("iframe").contents().find("body");
-					
-					console.log(htmlEditor);
-					
-					var htmlImg = $(`<img src="./uploads/${imgName}">`);
-					
-					console.log(htmlImg);
-					htmlEditor.append(htmlImg);
+					//console.log(htmlEditor);
+					//遍历图片数组将图片写入页面
+					imgNameArr.forEach(function(item){
+						var htmlImg = $(`<img src="./uploads/${item}">`);
+						htmlEditor.append(htmlImg);
+					})
+					//console.log(htmlImg);
 				}
 			})
 		}
-
 		//实例化编辑器
 		//建议使用工厂方法getEditor创建和引用编辑器实例，如果在某个闭包下引用该编辑器，直接调用UE.getEditor('editor')就能拿到相关的实例
 		var ue = UE.getEditor('editor');
-		
 		//一开始文本编辑器是隐藏的，点击编辑按钮后展开
 		document.querySelector("#lm_editor").style.display="none";
 		displayNoBtns();
@@ -326,13 +356,11 @@
 		function displayNoBtns(){
 			(document.querySelector('#btns')).style.display = 'none';
 			document.querySelector("#lm_editor").style.display="none";
-			
 		}
 		//  显示编辑器内的按钮
 		function displayYesBtns(){
 			(document.querySelector('#btns')).style.display = 'block';
 		document.querySelector("#lm_editor").style.display="block";
-			
 		}
 		//得到编辑的内容代码
 		function getContent() {
@@ -342,6 +370,7 @@
 			arr.push(UE.getEditor('editor').getContent());
 			goodsDescription = arr.join("\n"); 
 			alert(goodsDescription);
+			console.log(goodsDescription);
 		}
 		//不可编辑
 		function setDisabled() {
@@ -423,15 +452,15 @@
 				$(this).val() && $(this).parents('.form-group').removeClass('has-error');
 			})
 		}
-
 		$('#sub_Btn').click(function (e) {
+			getContent();
+//			console.log(goodsDescription);
 			e.preventDefault();
 			var filesLength = 0;
 			$.each($("[data-file='upload']"), function (index, ele) {
 				var files = $(ele).fileinput('getFileStack');
 				filesLength += files.length;
 			})
-
 			if (filesLength > 0) {
 				alert('你还有图片未上传');
 			} else {
