@@ -19,7 +19,7 @@ module.exports = function addGoods(res, result) {
         sql += `text='${result.goodsText}',sale_num=${result.goodsSaleNum},last_num=${result.goodsLastNum},sizes='${result.goodsSize}',`;
         sql += `des='${result.goodsDescription}',gl_b_imgs='${result.imgList.list_big}',gl_s_imgs='${result.imgList.list_small}',`;
         sql += `gd_b_imgs='${result.imgList.detail_big}',gd_s_imgs='${result.imgList.detail_small}' where`;
-        sql += ` good_id=${result.goodsId}`;
+        sql += ` good_id=${result.goodsId};`;
         //res.send(sql)
     } else {
         var sql = "insert into goods(good_type,price,old_price,text,sale_num,last_num,sizes,des,gl_b_imgs,gl_s_imgs,gd_b_imgs,gd_s_imgs)  values";
@@ -29,7 +29,6 @@ module.exports = function addGoods(res, result) {
 		sql += `'${result.imgList.detail_small}')`;
 		//res.send(sql)
     }
-
     connection.query(sql, function(err, result, fields) {
         var obj = {
             status: true,

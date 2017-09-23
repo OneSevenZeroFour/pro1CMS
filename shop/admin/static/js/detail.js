@@ -130,7 +130,7 @@ var updateOrInsert = {
             $.post(`${base().baseUrl}/insert`, {
                 data: JSON.stringify(obj)
             }, function(res) {
-				//console.log(res)
+				console.log(res)
                 var res = JSON.parse(res);
                 if (res.status) {
                     alert('success 商品已加入数据库');
@@ -307,7 +307,7 @@ var updateOrInsert = {
             document.querySelector("#lm_editor").style.display = "none";
         })
 
-        console.log(22333)
+        //console.log(22333)
 
         //  显示编辑器内的按钮
         $('.startEditor').click(function() {
