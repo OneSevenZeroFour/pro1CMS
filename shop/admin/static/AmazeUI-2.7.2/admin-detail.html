@@ -74,7 +74,7 @@
 
 	<header class="am-topbar am-topbar-inverse admin-header">
 		<div class="am-topbar-brand">
-			<strong>Amaze UI</strong> <small>后台管理模板</small>
+			<strong>名鞋库</strong> <small>后台管理模板</small>
 		</div>
 
 		<button class="am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-btn-success am-show-sm-only" data-am-collapse="{target: '#topbar-collapse'}"><span class="am-sr-only">导航切换</span> <span class="am-icon-bars"></span></button>
@@ -101,46 +101,42 @@
 	<div class="am-cf admin-main">
 		<!-- sidebar start -->
 		<div class="admin-sidebar am-offcanvas" id="admin-offcanvas">
-			<div class="am-offcanvas-bar admin-offcanvas-bar">
-				<ul class="am-list admin-sidebar-list">
-					<li><a href="admin-index.html"><span class="am-icon-home"></span> 首页</a></li>
-					<li class="admin-parent">
-						<a class="am-cf" data-am-collapse="{target: '#collapse-nav'}"><span class="am-icon-file"></span> 页面模块 <span class="am-icon-angle-right am-fr am-margin-right"></span></a>
-						<ul class="am-list am-collapse admin-sidebar-sub am-in" id="collapse-nav">
-							<li><a href="admin-user.html" class="am-cf"><span class="am-icon-check"></span> 个人资料<span class="am-icon-star am-fr am-margin-right admin-icon-yellow"></span></a></li>
-							<li><a href="admin-help.html"><span class="am-icon-puzzle-piece"></span> 帮助页</a></li>
-							<li><a href="admin-gallery.html"><span class="am-icon-th"></span> 相册页面<span class="am-badge am-badge-secondary am-margin-right am-fr">24</span></a></li>
-							<li><a href="admin-log.html"><span class="am-icon-calendar"></span> 系统日志</a></li>
-							<li><a href="admin-404.html"><span class="am-icon-bug"></span> 404</a></li>
-						</ul>
-					</li>
-					<li><a href="admin-table.html"><span class="am-icon-table"></span> 表格</a></li>
-					<li><a href="admin-form.html"><span class="am-icon-pencil-square-o"></span> 表单</a></li>
-					<li><a href="#"><span class="am-icon-sign-out"></span> 注销</a></li>
-				</ul>
+				<div class="am-offcanvas-bar admin-offcanvas-bar">
+					<ul class="am-list admin-sidebar-list">
+						<li>
+							<a href="./admin-table.html"><span class="am-icon-pencil-square-o"></span> 商品管理页面</a>
+						</li>
+					</ul>
 
-				<div class="am-panel am-panel-default admin-sidebar-panel">
-					<div class="am-panel-bd">
-						<p><span class="am-icon-bookmark"></span> 公告</p>
-						<p>时光静好，与君语；细水流年，与君同。—— Amaze UI</p>
+					<div class="am-panel am-panel-default admin-sidebar-panel">
+						<div class="am-panel-bd">
+							<img src="./2.png" alt="" style="width:190px; margin-bottom:20px"/>
+							<img src="./1.png" alt="" />
+						</div>
 					</div>
-				</div>
+					
+					<div class="am-panel am-panel-default admin-sidebar-panel">
+						<div class="am-panel-bd">
+							<p><span class="am-icon-bookmark"></span> 公告</p>
+							<p>专业精选，足够喜欢。—— 名鞋库</p>
+						</div>
+					</div>
 
-				<div class="am-panel am-panel-default admin-sidebar-panel">
-					<div class="am-panel-bd">
-						<p><span class="am-icon-tag"></span> wiki</p>
-						<p>Welcome to the Amaze UI wiki!</p>
+					<div class="am-panel am-panel-default admin-sidebar-panel">
+						<div class="am-panel-bd">
+							<p><span class="am-icon-tag"></span> wiki</p>
+							<p>Welcome to the S.CN!</p>
+						</div>
 					</div>
 				</div>
 			</div>
-		</div>
 		<!-- sidebar end -->
 
 		<!-- content start -->
 		<div class="admin-content">
 			<div class="admin-content-body">
 				<div class="admin_header">
-					<h4>添加商品</h4>
+					<h4>商品增加(修改)</h4>
 				</div>
 
 				<form action="javascript:void(0)" method="post" name="detail_form" id="detailForm">
@@ -255,7 +251,7 @@
 						</div>
 					</div>
 					<div class="upload form-group" style="margin-top:20px;">
-						<input type="submit" id="sub_Btn" value="提交" class="form-control btn-primary" style="width:100px;">
+						<input type="submit" id="sub_Btn" value="提交" class="form-control btn-primary" style="width:100px;float:right ;margin-right:20px;">
 					</div>
 				</form>
 			</div>

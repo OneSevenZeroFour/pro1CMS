@@ -13,7 +13,6 @@ var goods = {
 				var html = data.map(function(item){
 					return `
 						<tr>
-			                <td><input type="checkbox" /></td>
 			                <td class='goodsId'>${item.good_id}</td>
 			                <td><a href="#" class='title'>${item.text}</a></td>
 			                <td>${item.good_type}</td>
