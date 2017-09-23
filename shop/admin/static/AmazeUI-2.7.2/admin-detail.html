@@ -2,531 +2,302 @@
 <html class="no-js">
 
 <head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Amaze UI Admin detail Page</title>
-	<meta name="description" content="这是一个detail页面">
-	<meta name="keywords" content="detail">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="renderer" content="webkit">
-	<meta http-equiv="Cache-Control" content="no-siteapp" />
-	<link rel="icon" type="image/png" href="assets/i/favicon.png">
-	<link rel="apple-touch-icon-precomposed" href="assets/i/app-icon72x72@2x.png">
-	<meta name="apple-mobile-web-app-title" content="Amaze UI" />
-	<link rel="stylesheet" href="assets/css/amazeui.min.css" />
-	<link rel="stylesheet" href="assets/css/admin.css">
-	<link rel="stylesheet" href="assets/lib/bootstrap-3.3.7-dist/css/bootstrap.min.css">
-	<link rel="stylesheet" href="assets/lib/bootstrap-fileinput-master/css/fileinput.min.css">
-	<style>
-		.admin-content-body {
-			padding: 0 20px 0 30px;
-		}
-
-		.form-group>label {
-			font-size: 14px;
-			color: #666;
-		}
-		/*打开文编编辑器按钮及文本编辑器内部样式*/
-
-		#lm_editor {
-			/*margin:0*/
-			width: 100%;
-			height: 100%;
-			/*margin: 0 auto;*/
-		}
-
-		#editor {
-			margin: 20px auto;
-		}
-
-		#btns {
-			margin: 0 auto;
-			width: 500px;
-		}
-
-		.complete {
-			width: 500px;
-			line-height: 30px;
-			margin: 20px auto;
-		}
-
-		.complete button {
-			margin: 0 50px;
-			line-height: 30px;
-			background-color: #2e6da4;
-			border: 0;
-			float: left;
-			color: #fff;
-		}
-		.describe_img_preview img{
-			width: 150px;
-			height: 190px;
-			margin: 0 10px;
-		}
-		.letter-box{position: relative;}
-		.msg{width:300px;height:180px;position:absolute;left:0;top:37px;background:#fff;display:none;padding:0 15px;z-index: 999;color:#000;border:1px solid #555;border-top:0 none;overflow-y:scroll;}
-		.msg ul{height:150px;}
-		.msg li{height:30px;line-height:30px;overflow: hidden;}
-		.msg li .content{float:left;}
-		.msg li .read{float:right;}
-		.msg li .read span{padding:3px;background:#ccc;}
-		.msg li .read span:hover{cursor:pointer;}
-
-	</style>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Amaze UI Admin detail Page</title>
+    <meta name="description" content="这是一个detail页面">
+    <meta name="keywords" content="detail">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <link rel="icon" type="image/png" href="assets/i/favicon.png">
+    <link rel="apple-touch-icon-precomposed" href="assets/i/app-icon72x72@2x.png">
+    <meta name="apple-mobile-web-app-title" content="Amaze UI" />
+    <link rel="stylesheet" href="assets/css/amazeui.min.css" />
+    <link rel="stylesheet" href="assets/css/admin.css">
+    <link rel="stylesheet" href="assets/lib/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/lib/bootstrap-fileinput-master/css/fileinput.min.css">
+    <style>
+        .admin-content-body {
+            padding: 0 20px 0 30px;
+        }
+        
+        .form-group>label {
+            font-size: 14px;
+            color: #666;
+        }
+        /*打开文编编辑器按钮及文本编辑器内部样式*/
+        
+        #lm_editor {
+            /*margin:0*/
+            width: 100%;
+            height: 100%;
+            /*margin: 0 auto;*/
+        }
+        
+        #editor {
+            margin: 20px auto;
+        }
+        
+        #btns {
+            margin: 0 auto;
+            width: 500px;
+        }
+        
+        .complete {
+            width: 500px;
+            line-height: 30px;
+            margin: 20px auto;
+        }
+        
+        .complete button {
+            margin: 0 50px;
+            line-height: 30px;
+            background-color: #2e6da4;
+            border: 0;
+            float: left;
+            color: #fff;
+        }
+        
+        .describe_img_preview img {
+            width: 150px;
+            height: 190px;
+            margin: 0 10px;
+        }
+        .letter-box{position: relative;}
+        .msg{width:300px;height:180px;position:absolute;left:0;top:37px;background:#fff;display:none;padding:0 15px;z-index: 999;color:#000;border:1px solid #555;border-top:0 none;overflow-y:scroll;}
+        .msg ul{height:150px;}
+        .msg li{height:30px;line-height:30px;overflow: hidden;}
+        .msg li .content{float:left;}
+        .msg li .read{float:right;}
+        .msg li .read span{padding:3px;background:#ccc;}
+        .msg li .read span:hover{cursor:pointer;}
+    </style>
 </head>
 
 <body>
-	<!--[if lte IE 9]>
+    <!--[if lte IE 9]>
 <p class="browsehappy">你正在使用<strong>过时</strong>的浏览器，Amaze UI 暂不支持。 请 <a href="http://browsehappy.com/" target="_blank">升级浏览器</a>
   以获得更好的体验！</p>
 <![endif]-->
 
-	<header class="am-topbar am-topbar-inverse admin-header">
-		<div class="am-topbar-brand">
-			<strong>名鞋库</strong> <small>后台管理模板</small>
-		</div>
-
-		<button class="am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-btn-success am-show-sm-only" data-am-collapse="{target: '#topbar-collapse'}"><span class="am-sr-only">导航切换</span> <span class="am-icon-bars"></span></button>
-
-		<div class="am-collapse am-topbar-collapse" id="topbar-collapse">
-
-			<ul class="am-nav am-nav-pills am-topbar-nav am-topbar-right admin-header-list">
-				<li class="letter-box">
-					<a href="javascript:;"><span class="am-icon-envelope-o"></span> 收件箱 <span class="am-badge am-badge-warning">5</span></a>
-					<ul class="msg"></ul>
-				</li>
-				<li class="am-dropdown" data-am-dropdown>
-					<a class="am-dropdown-toggle" data-am-dropdown-toggle href="javascript:;">
-          <span class="am-icon-users"></span> 管理员 <span class="am-icon-caret-down"></span>
-        </a>
-					<ul class="am-dropdown-content">
-						<li><a href="#"><span class="am-icon-user"></span> 资料</a></li>
-						<li><a href="#"><span class="am-icon-cog"></span> 设置</a></li>
-						<li><a href="#"><span class="am-icon-power-off"></span> 退出</a></li>
-					</ul>
-				</li>
-				<li class="am-hide-sm-only"><a href="javascript:;" id="admin-fullscreen"><span class="am-icon-arrows-alt"></span> <span class="admin-fullText">开启全屏</span></a></li>
-			</ul>
-		</div>
-	</header>
-
-	<div class="am-cf admin-main">
-		<!-- sidebar start -->
-		<div class="admin-sidebar am-offcanvas" id="admin-offcanvas">
-				<div class="am-offcanvas-bar admin-offcanvas-bar">
-					<ul class="am-list admin-sidebar-list">
-						<li>
-							<a href="./admin-table.html"><span class="am-icon-pencil-square-o"></span> 商品管理页面</a>
-						</li>
-					</ul>
-
-					<div class="am-panel am-panel-default admin-sidebar-panel">
-						<div class="am-panel-bd">
-							<img src="./2.png" alt="" style="width:190px; margin-bottom:20px"/>
-							<img src="./1.png" alt="" />
-						</div>
-					</div>
-					
-					<div class="am-panel am-panel-default admin-sidebar-panel">
-						<div class="am-panel-bd">
-							<p><span class="am-icon-bookmark"></span> 公告</p>
-							<p>专业精选，足够喜欢。—— 名鞋库</p>
-						</div>
-					</div>
-
-					<div class="am-panel am-panel-default admin-sidebar-panel">
-						<div class="am-panel-bd">
-							<p><span class="am-icon-tag"></span> wiki</p>
-							<p>Welcome to the S.CN!</p>
-						</div>
-					</div>
-				</div>
-			</div>
-		<!-- sidebar end -->
-
-		<!-- content start -->
-		<div class="admin-content">
-			<div class="admin-content-body">
-				<div class="admin_header">
-					<h4>商品增加(修改)</h4>
-				</div>
-
-				<form action="javascript:void(0)" method="post" name="detail_form" id="detailForm">
-					<div class="row">
-
-						<div class="form-group col-sm-6">
-							<label for="goodsType" class=" control-label">商品类型</label>
-							<span class="" style="color:red;font-size:14px;margin-left:12px;">* 必选</span>
-							<div class="">
-								<input type="text" class="form-control" id="goodsType">
-							</div>
-						</div>
-						<div class="form-group col-sm-6">
-							<label for="goodsText" class=" control-label">商品信息</label>
-							<div class="">
-								<input type="text" class="form-control" id="goodsText">
-							</div>
-						</div>
-					</div>
-
-					<div class="row">
-						<div class="form-group col-sm-6">
-							<label for="goodsPrice" class="control-label ">优惠价格</label>
-							<span class="" style="color:red;font-size:14px;margin-left:12px;">* 必填</span>
-							<div class="">
-								<input type="text" class="form-control" id="goodsPrice" required>
-							</div>
-						</div>
-						<div class="form-group col-sm-6">
-							<label for="goodsOldPrice" class="control-label ">原价格</label>
-							<div class="">
-								<input type="text" class="form-control" id="goodsOldPrice">
-							</div>
-						</div>
-					</div>
-					<div class="row">
-						<div class="form-group col-sm-6">
-							<label for="goodsSaleNum" class=" control-label">出售数量</label>
-							<div class="">
-								<input type="text" class="form-control" id="goodsSaleNum">
-							</div>
-						</div>
-						<div class="form-group col-sm-6">
-							<label for="goodsLastNum" class=" control-label">库存数量</label>
-							<div class="">
-								<input type="text" class="form-control" id="goodsLastNum">
-							</div>
-						</div>
-					</div>
-					<div class="form-group">
-						<label for="goodsSize" class=" control-label">商品规格</label>
-						<span class="" style="color:red;font-size:14px;margin-left:12px;">* 必选</span>
-						<span class="" style="color:#DD4C09;font-size:14px;margin-left:40px;">若有多个型号，型号间用"/"隔开</span>
-						<div class="">
-							<input type="text" class="form-control" id="goodsSize" required>
-						</div>
-					</div>
-
-
-					<div class="form-group">
-						<label for="file_01">列表页大图</label>
-						<span class="" style="color:red;font-size:14px;margin-left:12px;">* 必选</span>
-						<input id="file_01" name="list_big" multiple type="file" data-show-caption="true" data-file="upload">
-					</div>
-					<div class="form-group">
-						<label for="file_02">列表页小图</label>
-						<span class="" style="color:red;font-size:14px;margin-left:12px;">* 必选</span>
-						<input id="file_02" name="list_small" multiple type="file" data-show-caption="true" data-file="upload">
-					</div>
-					<div class="form-group">
-						<labeld for="file_03">详情页大图</label>
-							<span class="" style="color:red;font-size:14px;margin-left:12px;">* 必选</span>
-							<input id="file_03" name="detail_big" multiple type="file" data-show-caption="true" data-file="upload">
-					</div>
-					<div class="form-group">
-						<label for="file_04">详情页小图</label>
-						<span class="" style="color:red;font-size:14px;margin-left:12px;">* 必选</span>
-						<input id="file_04" name="detail_small" multiple type="file" data-show-caption="true" data-file="upload">
-					</div>
-					<div class="form-group">
-						<label for="file_05">详情描述</label>
-						<input id="file_05" name="descripImg" multiple type="file" data-show-caption="true" data-file="upload">
-					</div>
-					<div class="form-group" style="overflow:hidden;">
-						<label for="goodsDescription" class=" control-label">商品描述</label>
-						<div id="lm_editor">
-							<script id="editor" type="text/plain" style="width:1024px;height:500px;">
-								
-							</script>
-							<div class="describe_img_preview">
-								<p>商品预览</p>
-							</div>
-							<p>商品描述图片： <input id="detail_img" type="file" name="logo" value="上传图片" accept="image/gif,image/jpeg,image/jpg,image/png" multiple="mutiple"/><input type="button" value="上传" onclick="doUpload()" /></p>
-						</div>
-						
-			
-						<div id="btns">
-							
-							<button onclick="getContent()" type="button">获得内容</button>
-							<button onclick="hasContent()" type="button">判断是否有内容</button>
-							<button id="enable" onclick="setEnabled()" type="button">可以编辑</button>
-							<button onclick="setDisabled()" type="button">不可编辑</button>
-							
-						</div>
-						<div class="complete">
-							<!--完成编辑后隐藏富文本编辑器，得到编辑的代码-->
-							
-							<button type="button" onclick=" UE.getEditor('editor').setShow();displayYesBtns()">开始编辑商品详情</button>
-							<button type="button" onclick=" UE.getEditor('editor').setHide();getContent();displayNoBtns()">完成详情编辑</button>
-						</div>
-
-						</div>
-					</div>
-					<div class="upload form-group" style="margin-top:20px;">
-						<input type="submit" id="sub_Btn" value="提交" class="form-control btn-primary" style="width:100px;float:right ;margin-right:20px;">
-					</div>
-				</form>
-			</div>
-		</div>
-
-		<footer class="admin-content-footer">
-			<hr>
-			<p class="am-padding-left">© 2014 AllMobilize, Inc. Licensed under MIT license.</p>
-		</footer>
-	</div>
-	<!-- content end -->
-
+<header class="am-topbar am-topbar-inverse admin-header">
+	<div class="am-topbar-brand">
+		<strong>名鞋库</strong> <small>后台管理模板</small>
 	</div>
 
-	<a href="#" class="am-icon-btn am-icon-th-list am-show-sm-only admin-menu" data-am-offcanvas="{target: '#admin-offcanvas'}"></a>
+	<button class="am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-btn-success am-show-sm-only" data-am-collapse="{target: '#topbar-collapse'}"><span class="am-sr-only">导航切换</span> <span class="am-icon-bars"></span></button>
 
-	<footer>
-		<hr>
-		<p class="am-padding-left">© 2014 AllMobilize, Inc. Licensed under MIT license.</p>
-	</footer>
-	<script type="text/javascript" charset="utf-8" src="ueditor/ueditor.config.js"></script>
-	<script type="text/javascript" charset="utf-8" src="ueditor/editor_api.js">
-	</script>
-	<!--建议手动加在语言，避免在ie下有时因为加载语言失败导致编辑器加载失败-->
-	<!--这里加载的语言文件会覆盖你在配置项目里添加的语言类型，比如你在配置项目里配置的是英文，这里加载的中文，那最后就是中文-->
-	<script type="text/javascript" charset="utf-8" src="ueditor/lang/zh-cn/zh-cn.js"></script>
+	<div class="am-collapse am-topbar-collapse" id="topbar-collapse">
 
-	<script src="assets/lib/jquery-3.1.1.js"></script>
-	<script src="assets/lib/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
-	<script src="assets/lib/bootstrap-fileinput-master/js/fileinput.min.js"></script>
-	<script src="assets/lib/bootstrap-fileinput-master/js/locales/zh.js"></script>
-	<script src="../js/base.js"></script>
-	<script src="assets/js/letter.js"></script>	
+		<ul class="am-nav am-nav-pills am-topbar-nav am-topbar-right admin-header-list">
+			<li class="letter-box">
+                <a href="javascript:;"><span class="am-icon-envelope-o"></span> 收件箱 <span class="am-badge am-badge-warning">0</span></a>
+                <ul class="msg"></ul>
+            </li>
+			<li class="am-dropdown" data-am-dropdown>
+				<a class="am-dropdown-toggle" data-am-dropdown-toggle href="javascript:;">
+	  <span class="am-icon-users"></span> 管理员 <span class="am-icon-caret-down"></span>
+	</a>
+				<ul class="am-dropdown-content">
+					<li><a href="#"><span class="am-icon-user"></span> 资料</a></li>
+					<li><a href="#"><span class="am-icon-cog"></span> 设置</a></li>
+					<li><a href="#"><span class="am-icon-power-off"></span> 退出</a></li>
+				</ul>
+			</li>
+			<li class="am-hide-sm-only"><a href="javascript:;" id="admin-fullscreen"><span class="am-icon-arrows-alt"></span> <span class="admin-fullText">开启全屏</span></a></li>
+		</ul>
+	</div>
+</header>
 
-	<script>
-		//更新判断
-		var id = window.location.search.replace('?','').split('=')[1];
-		(function(){
-			id && $.ajax({
-				type:"get",
-				url:`${base().baseUrl}/gaingoods`,
-				data:{id},
-				success:function(data){
-					var data = JSON.parse(data)[0];
+<div class="am-cf admin-main">
+	<!-- sidebar start -->
+	<div class="admin-sidebar am-offcanvas" id="admin-offcanvas">
+			<div class="am-offcanvas-bar admin-offcanvas-bar">
+				<ul class="am-list admin-sidebar-list">
+					<li>
+						<a href="./admin-table.html"><span class="am-icon-pencil-square-o"></span> 商品管理页面</a>
+					</li>
+				</ul>
 
-					var text = $('#goodsText').val(data.text);
-					var price = $('#goodsPrice').val(data.price);
-					var old_price = $('#goodsOldPrice').val(data.old_price);
-					var good_type = $('#goodsType').val(data.good_type);
-					var sale_num = $('#goodsSaleNum').val(data.sale_num);
-					var last_num = $('#goodsLastNum').val(data.last_num);
-					var sizes = $('#goodsSize').val(data.sizes);
-				}
-			});
-		})()
-
-		//商品图片预览
-		//预览
-		$('#detail_img').change(function(){
-			$('.describe_img_preview').children('img').remove();
-			var imgs_obj =this.files;
-			console.log(imgs_obj);
-			for(var i=0;i<imgs_obj.length;i++){
-				var imgStr =`<img src="${window.URL.createObjectURL(imgs_obj[i])}"/>`;
-				$('.describe_img_preview').append(imgStr);
-			}
-		})
-		//商品介绍描述图片上传
-		function doUpload() { 
-			$('.describe_img_preview').children('img').remove();
-			var formDate =new FormData();
-				//console.log($('#detail_img')[0].files);
-				//得到所有的图片，得到对象
-				var detail_imgs_obj = $('#detail_img')[0].files;
-				//console.log( detail_imgs_obj);
-				//遍历对象，并得到每张图片的含有图片信息的对象
-				for(var attr in detail_imgs_obj){
-					//console.log(attr)
-					//将每张图片信息都写入formDate内
-					formDate.append('file',detail_imgs_obj[attr]);
-				}
-			$.ajax({
-				url: `${base().baseUrl}/fileupload`,
-				type: 'POST',
-				cache: false, 
-				data: formDate,
-				processData: false,
-				contentType: false,
-				success: function(data) {
-					//console.log(data);
-					//{"status":"success","imgUrl":["file-1506049908556.jpg","file-1506049908556.jpg","file-1506049908699.jpg","file-1506049908719.jpg","file-1506049908720.jpg"]}
-					//图片名数组
-					var imgNameArr = (JSON.parse(data).imgUrl);
-					//console.log(imgNameArr);
-					//编辑器元素
-					var htmlEditor = $("iframe").contents().find("body");
-					//console.log(htmlEditor);
-					//遍历图片数组将图片写入页面
-					imgNameArr.forEach(function(item){
-						var htmlImg = $(`<img src="${base().baseUrl}/${item}">`);
-						htmlEditor.append(htmlImg);
-					})
-					//console.log(htmlImg);
-				}
-			})
-		}
-		//实例化编辑器
-		//建议使用工厂方法getEditor创建和引用编辑器实例，如果在某个闭包下引用该编辑器，直接调用UE.getEditor('editor')就能拿到相关的实例
-		var ue = UE.getEditor('editor');
-		//一开始文本编辑器是隐藏的，点击编辑按钮后展开
-		document.querySelector("#lm_editor").style.display="none";
-		displayNoBtns();
-		//设置一个变量接收编辑的内容得到的代码；
-		var goodsDescription ="";
-		//隐藏编辑器内的按钮
-		function displayNoBtns(){
-			(document.querySelector('#btns')).style.display = 'none';
-			document.querySelector("#lm_editor").style.display="none";
-		}
-		//  显示编辑器内的按钮
-		function displayYesBtns(){
-			(document.querySelector('#btns')).style.display = 'block';
-		document.querySelector("#lm_editor").style.display="block";
-		}
-		//得到编辑的内容代码
-		function getContent() {
-			var arr = [];
-			//      arr.push("使用editor.getContent()方法可以获得编辑器的内容");
-			//      arr.push("内容为：");
-			arr.push(UE.getEditor('editor').getContent());
-			goodsDescription = arr.join("\n"); 
-			alert(goodsDescription);
-			console.log(goodsDescription);
-		}
-		//不可编辑
-		function setDisabled() {
-			UE.getEditor('editor').setDisabled('fullscreen');
-			disableBtn("enable");
-		}
-		//	可编辑	
-		function setEnabled() {
-			UE.getEditor('editor').setEnabled();
-			enableBtn();
-		}
-		//编辑器是否有内容
-		function hasContent() {
-			var arr = [];
-			arr.push("使用editor.hasContents()方法判断编辑器里是否有内容");
-			arr.push("判断结果为：");
-			arr.push(UE.getEditor('editor').hasContents());
-			alert(arr.join("\n"));
-		}
-		function disableBtn(str) {
-			var div = document.getElementById('btns');
-			var btns = UE.dom.domUtils.getElementsByTagName(div, "button");
-			for (var i = 0, btn; btn = btns[i++];) {
-				if (btn.id == str) {
-					UE.dom.domUtils.removeAttributes(btn, ["disabled"]);
-				} else {
-					btn.setAttribute("disabled", "true");
-				}
-			}
-		}
-		function enableBtn() {
-			var div = document.getElementById('btns');
-			var btns = UE.dom.domUtils.getElementsByTagName(div, "button");
-			for (var i = 0, btn; btn = btns[i++];) {
-				UE.dom.domUtils.removeAttributes(btn, ["disabled"]);
-			}
-		}
-
-		var imgList = {};
-		//$('#descript').load('./ueditor.html #lm_editor')
-		$.each($("[data-file='upload']"), function (index, ele) {
-			$(ele).fileinput({
-				language: 'zh', //设置语言
-				uploadUrl: `${base().baseUrl}/fileupload`, //上传的地址
-				allowedFileExtensions: ['jpg', 'gif', 'png'], //接收的文件后缀
-				uploadAsync: true, //默认异步上传
-				showUpload: true, //是否显示上传按钮
-				showRemove: true, //显示移除按钮
-				showPreview: true, //是否显示预览
-				showCaption: true, //是否显示标题
-				browseClass: "btn btn-primary", //按钮样式     
-				dropZoneEnabled: true, //是否显示拖拽区域
-				maxFileCount: 10, //表示允许同时上传的最大文件个数
-				enctype: 'multipart/form-data',
-				validateInitialCount: true,
-				previewFileIcon: "<i class='glyphicon glyphicon-king'></i>",
-				//previewSettings
-				msgFilesTooMany: "选择上传的文件数量({n}) 超过允许的最大数值{m}！",
-			})
-
-			//加载预览触发
-			$(ele).on('fileloaded', function (event, file, previewId, index, reader) {
-				console.log(file)
-
-			})
-			//上传触发
-			$(ele).on("fileuploaded", function (event, data, previewId, index) {
-				imgList[$(ele).prop('name')] = data.response.imgUrl;
-			});
-		})
-
-		//非空判断
-		function isNull(dom){
-			//console.log(2333,$(dom).parents('.form-group'))
-			$(dom).parents('.form-group').addClass('has-error');
-			$(dom).blur(function(e){
-				e.preventDefault();
-				//console.log(1222)
-				$(this).val() && $(this).parents('.form-group').removeClass('has-error');
-			})
-		}
-		$('#sub_Btn').click(function (e) {
-			//getContent();
-			//console.log(goodsDescription);
-			e.preventDefault();
-			var filesLength = 0;
-			$.each($("[data-file='upload']"), function (index, ele) {
-				var files = $(ele).fileinput('getFileStack');
-				filesLength += files.length;
-			})
-			if (filesLength > 0) {
-				alert('你还有图片未上传');
-			} else {
-				//输入数据判定
-				var goodsSize = $('#goodsSize').val();
-				goodsSize = goodsSize.split(/\s*\/\s*/).join('、');
-				var str = goodsDescription;
+				<div class="am-panel am-panel-default admin-sidebar-panel">
+					<div class="am-panel-bd">
+						<img src="./2.png" alt="" style="width:190px; margin-bottom:20px"/>
+						<img src="./1.png" alt="" />
+					</div>
+				</div>
 				
-				if(!$('#goodsPrice').val() || !$('#goodsSize').val()){
-					alert('必填字段不能为空');
-					!$('#goodsPrice').val() && isNull($('#goodsPrice')[0]);
-					!$('#goodsSize').val() && isNull($('#goodsSize')[0]);
-					
-				}else {
-					var obj = {
-						goodsId : id? id : "",
-						goodsType: $('#goodsType').val(),
-						goodsPrice: $('#goodsPrice').val(),
-						goodsOldPrice: $('#goodsOldPrice').val(),
-						goodsSaleNum: $('#goodsSaleNum').val(),
-						goodsLastNum: $('#goodsLastNum').val(),
-						goodsSize: goodsSize,
-						goodsDescription: str,
-						goodsText: $('#goodsText').val(),
-						imgList: imgList,
-						goodsDescription: goodsDescription
-					}
-					$.post(`${base().baseUrl}/insert`, {
-						data: JSON.stringify(obj)
-					}, function (res) {
-						var res = JSON.parse(res);
-						if (res.status) {
-							alert('商品增加成功');
-							window.location.href = "admin-table.html";
-						}
-					})
-				}
-			}
-		})
-	</script>
+				<div class="am-panel am-panel-default admin-sidebar-panel">
+					<div class="am-panel-bd">
+						<p><span class="am-icon-bookmark"></span> 公告</p>
+						<p>专业精选，足够喜欢。—— 名鞋库</p>
+					</div>
+				</div>
+
+				<div class="am-panel am-panel-default admin-sidebar-panel">
+					<div class="am-panel-bd">
+						<p><span class="am-icon-tag"></span> wiki</p>
+						<p>Welcome to the S.CN!</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	<!-- sidebar end -->
+
+	<!-- content start -->
+	<div class="admin-content">
+		<div class="admin-content-body">
+			<div class="admin_header">
+				<h4>商品增加(修改)</h4>
+			</div>
+
+                <form action="javascript:void(0)" method="post" name="detail_form" id="detailForm">
+                    <div class="row">
+
+                        <div class="form-group col-sm-6">
+                            <label for="goodsType" class=" control-label">商品类型</label>
+                            <span class="" style="color:red;font-size:14px;margin-left:12px;">* 必选</span>
+                            <div class="">
+                                <input type="text" class="form-control" id="goodsType">
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <label for="goodsText" class=" control-label">商品信息</label>
+                            <div class="">
+                                <input type="text" class="form-control" id="goodsText">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-sm-6">
+                            <label for="goodsPrice" class="control-label ">优惠价格</label>
+                            <span class="" style="color:red;font-size:14px;margin-left:12px;">* 必填</span>
+                            <div class="">
+                                <input type="text" class="form-control" id="goodsPrice" required>
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <label for="goodsOldPrice" class="control-label ">原价格</label>
+                            <div class="">
+                                <input type="text" class="form-control" id="goodsOldPrice">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-sm-6">
+                            <label for="goodsSaleNum" class=" control-label">出售数量</label>
+                            <div class="">
+                                <input type="text" class="form-control" id="goodsSaleNum">
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <label for="goodsLastNum" class=" control-label">库存数量</label>
+                            <div class="">
+                                <input type="text" class="form-control" id="goodsLastNum">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="goodsSize" class=" control-label">商品规格</label>
+                        <span class="" style="color:red;font-size:14px;margin-left:12px;">* 必选</span>
+                        <span class="" style="color:#DD4C09;font-size:14px;margin-left:40px;">若有多个型号，型号间用"/"隔开</span>
+                        <div class="">
+                            <input type="text" class="form-control" id="goodsSize" required>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="file_01">列表页大图</label>
+                        <span class="" style="color:red;font-size:14px;margin-left:12px;">* 必选</span>
+                        <input id="file_01" name="list_big" multiple type="file" data-show-caption="true" data-file="upload">
+                    </div>
+                    <div class="form-group">
+                        <label for="file_02">列表页小图</label>
+                        <span class="" style="color:red;font-size:14px;margin-left:12px;">* 必选</span>
+                        <input id="file_02" name="list_small" multiple type="file" data-show-caption="true" data-file="upload">
+                    </div>
+                    <div class="form-group">
+                        <labeld for="file_03">详情页大图</label>
+                            <span class="" style="color:red;font-size:14px;margin-left:12px;">* 必选</span>
+                            <input id="file_03" name="detail_big" multiple type="file" data-show-caption="true" data-file="upload">
+                    </div>
+                    <div class="form-group">
+                        <label for="file_04">详情页小图</label>
+                        <span class="" style="color:red;font-size:14px;margin-left:12px;">* 必选</span>
+                        <input id="file_04" name="detail_small" multiple type="file" data-show-caption="true" data-file="upload">
+                    </div>
+                    <div class="form-group" style="overflow:hidden;">
+                        <label for="goodsDescription" class=" control-label">商品描述</label>
+                        <div id="lm_editor">
+                            <script id="editor" type="text/plain" style="width:1024px;height:500px;">
+
+                            </script>
+                            <div class="describe_img_preview">
+                                <p>商品预览</p>
+                            </div>
+							<p>
+								商品描述图片： 
+								<input id="detail_img" type="file" name="logo" value="上传图片" accept="image/gif,image/jpeg,image/jpg,image/png" multiple="mutiple" />
+								<input type="button" value="上传" class="doUpload" />
+							</p>
+                        </div>
+
+
+                        <div id="btns">
+
+                            <button type="button" class="getContent">获得内容</button>
+                            <button type="button" class="hasContent">判断是否有内容</button>
+                            <button id="enable" class="setEnabled" type="button">可以编辑</button>
+                            <button class="setDisabled" type="button">不可编辑</button>
+
+                        </div>
+                        <div class="complete">
+                            <!--完成编辑后隐藏富文本编辑器，得到编辑的代码-->
+
+                            <button type="button" class="startEditor">开始编辑商品详情</button>
+                            <button type="button" class="completeEditor">完成详情编辑</button>
+                        </div>
+
+                    </div>
+            </div>
+            <div class="upload form-group" style="margin-top:20px;">
+                <input type="submit" id="sub_Btn" value="提交" class="form-control btn-primary" style="width:100px;float:right ;margin-right:20px;">
+            </div>
+            </form>
+        </div>
+    </div>
+
+    <footer class="admin-content-footer">
+        <hr>
+        <p class="am-padding-left">© 2014 AllMobilize, Inc. Licensed under MIT license.</p>
+    </footer>
+    </div>
+    <!-- content end -->
+
+    </div>
+
+    <a href="#" class="am-icon-btn am-icon-th-list am-show-sm-only admin-menu" data-am-offcanvas="{target: '#admin-offcanvas'}"></a>
+
+    <footer>
+        <hr>
+        <p class="am-padding-left">© 2014 AllMobilize, Inc. Licensed under MIT license.</p>
+    </footer>
+    <script type="text/javascript" charset="utf-8" src="ueditor/ueditor.config.js"></script>
+    <script type="text/javascript" charset="utf-8" src="ueditor/editor_api.js">
+    </script>
+    <!--建议手动加在语言，避免在ie下有时因为加载语言失败导致编辑器加载失败-->
+    <!--这里加载的语言文件会覆盖你在配置项目里添加的语言类型，比如你在配置项目里配置的是英文，这里加载的中文，那最后就是中文-->
+    <script type="text/javascript" charset="utf-8" src="ueditor/lang/zh-cn/zh-cn.js"></script>
+
+    <script src="assets/lib/jquery-3.1.1.js"></script>
+    <script src="assets/lib/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
+    <script src="assets/lib/bootstrap-fileinput-master/js/fileinput.min.js"></script>
+    <script src="assets/lib/bootstrap-fileinput-master/js/locales/zh.js"></script>
+    <script src="../js/base.js"></script>
+    <script src="../js/detail.js"></script>
+    <script src="assets/js/letter.js"></script>
 </body>
 
 </html>
