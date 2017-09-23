@@ -127,16 +127,16 @@ var updateOrInsert = {
             }
 
             //ajax 请求
-            // $.post(`${base().baseUrl}/insert`, {
-            //     data: JSON.stringify(obj)
-            // }, function(res) {
-			// 	console.log(res)
-            //     var res = JSON.parse(res);
-            //     if (res.status) {
-            //         alert('success 商品已加入数据库');
-            //         //window.location.href = "admin-table.html";
-            //     }
-            // })
+            $.post(`${base().baseUrl}/insert`, {
+                data: JSON.stringify(obj)
+            }, function(res) {
+				//console.log(res)
+                var res = JSON.parse(res);
+                if (res.status) {
+                    alert('success 商品已加入数据库');
+                    window.location.href = "admin-table.html";
+                }
+            })
         })
     },
 
