@@ -2,7 +2,7 @@ var goods = {
 	check:function(type,index,val){
 		$.ajax({
 			type:"get",
-			url:"http://127.0.0.1:8888/typeFind",
+			url:`${base().baseUrl}/typeFind`,
 			data:{
 				type,
 				index,
@@ -35,7 +35,7 @@ var goods = {
 	},
 	page:function(type,val){
 		$.ajax({
-			url:'http://127.0.0.1:8888/page',
+			url:`${base().baseUrl}/page`,
 			type:'get',
 			data:{
 				type,
@@ -76,7 +76,7 @@ var goods = {
 			if(r == true){
 				$.ajax({
 					type:"get",
-					url:"http://127.0.0.1:8888/removegoods",
+					url:`${base().baseUrl}/removegoods`,
 					data:{
 						id
 					},
@@ -97,7 +97,7 @@ var goods = {
 	goodsType:function(){
 		$.ajax({
 			type:"get",
-			url:"http://127.0.0.1:8888/goodsType",
+			url:`${base().baseUrl}/goodsType`,
 			success:function(data){
 				var data = JSON.parse(data);
 				var html = data.map(function(item){
@@ -129,7 +129,7 @@ var goods = {
 				var val = $('.am-form-field').val();
 				$.ajax({
 					type:"get",
-					url:"http://127.0.0.1:8888/mhsearch",
+					url:`${base().baseUrl}/mhsearch`,
 					data:{
 						val
 					},

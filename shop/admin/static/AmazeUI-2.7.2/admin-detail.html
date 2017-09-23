@@ -283,6 +283,7 @@
 	<script src="assets/lib/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
 	<script src="assets/lib/bootstrap-fileinput-master/js/fileinput.min.js"></script>
 	<script src="assets/lib/bootstrap-fileinput-master/js/locales/zh.js"></script>
+	<script src="../js/base.js"></script>	
 
 	<script>
 		//更新判断
@@ -290,7 +291,7 @@
 		(function(){
 			id && $.ajax({
 				type:"get",
-				url:"http://127.0.0.1:8888/gaingoods",
+				url:`${base().baseUrl}/gaingoods`,
 				data:{id},
 				success:function(data){
 					var data = JSON.parse(data)[0];
@@ -332,7 +333,7 @@
 					formDate.append('file',detail_imgs_obj[attr]);
 				}
 			$.ajax({
-				url: 'http://127.0.0.1:8888/fileupload',
+				url: `${base().baseUrl}/fileupload`,
 				type: 'POST',
 				cache: false, 
 				data: formDate,
@@ -349,7 +350,7 @@
 					//console.log(htmlEditor);
 					//遍历图片数组将图片写入页面
 					imgNameArr.forEach(function(item){
-						var htmlImg = $(`<img src="./uploads/${item}">`);
+						var htmlImg = $(`<img src="${base().baseUrl}/${item}">`);
 						htmlEditor.append(htmlImg);
 					})
 					//console.log(htmlImg);
@@ -426,7 +427,7 @@
 		$.each($("[data-file='upload']"), function (index, ele) {
 			$(ele).fileinput({
 				language: 'zh', //设置语言
-				uploadUrl: "http://127.0.0.1:8888/fileupload", //上传的地址
+				uploadUrl: `${base().baseUrl}/fileupload`, //上传的地址
 				allowedFileExtensions: ['jpg', 'gif', 'png'], //接收的文件后缀
 				uploadAsync: true, //默认异步上传
 				showUpload: true, //是否显示上传按钮
@@ -500,7 +501,7 @@
 						imgList: imgList,
 						goodsDescription: goodsDescription
 					}
-					$.post('http://127.0.0.1:8888/insert', {
+					$.post(`${base().baseUrl}/insert`, {
 						data: JSON.stringify(obj)
 					}, function (res) {
 						var res = JSON.parse(res);
