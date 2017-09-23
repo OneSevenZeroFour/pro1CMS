@@ -2,7 +2,7 @@
 * @Author: 陈文贵
 * @Date:   2017-09-05 22:05:16
 * @Last Modified by:   Marte
-* @Last Modified time: 2017-09-21 20:36:24
+* @Last Modified time: 2017-09-23 12:15:45
 */
 
 require(['config'],function(){
@@ -54,17 +54,17 @@ require(['config'],function(){
                     $('.sendbtn').attr('disabled',false);
                     socket.emit('chat',$('textarea').val());
                     
-                    $.ajax({
-                        type:'post',
-                        url:'http://127.0.0.1:8888',
-                        async:true,
-                        data:{
-                            news:$('textarea').val()
-                        },
-                        success:function(){
+                    // $.ajax({
+                    //     type:'post',
+                    //     url:'http://127.0.0.1:8888',
+                    //     async:true,
+                    //     data:{
+                    //         news:$('textarea').val()
+                    //     },
+                    //     success:function(){
 
-                        }
-                    });
+                    //     }
+                    // });
                     $('textarea').val("").focus();
                 }
                 
