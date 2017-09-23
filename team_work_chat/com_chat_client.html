@@ -1,0 +1,212 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>大众聊天室</title>
+    <style>
+        /* reset默认样式 */
+        body{color:#000;background-color: #22252A;overflow:auto;margin:0;padding:0;}body{font-size:12px;}body,input,select,button,textarea{font-family:verdana,sans-serif;}h1,h2,h3,h4,h5,h6,select,input,textarea,button,table{font-size:100%;}h1,h2,h3,h4,h5,h6,ul,ol,li,form,p,dl,dt,dd,table,th,td,img,blockquote{margin:0;padding:0;border:0;}input,button,textarea,img{line-height:normal;outline:0;}abbr,acronym,address,cite,q,em,code,var,dfn,ins{font-style:normal;text-decoration:none;border:0;}q:before,q:after{content:"";}ul,ol{list-style:none;}table{border-collapse:collapse;border-spacing:0;}select,input,button,button img,textarea,label,img{margin:0;vertical-align:middle;}
+        /*主要样式*/
+        .gray {color:gray;}
+        .textIndent {text-indent:2em;}
+        .talkLeft, .talkRight{float:left;height: 480px;padding:10px 10px;}
+        .talkLeft {width:625px;}
+        #talkFrame {height: 360px;padding: 5px 5px;margin-bottom:10px;overflow-y:scroll;overflow-x: none; }
+        #inputDiv {margin-bottom:5px;}
+        #message {width: 623px;height: 60px;border:0px;resize: none;}
+        .page{overflow:hidden;width:890px;margin: 0 auto;background: #FFFFFF;font-size:12px;padding: 10px 10px;margin-top:50px;}
+        .f-right{float:right;}
+        .f-left{float:left;}
+        #onlineUsers {width: 225px; height: 440px;padding-top: 10px;}
+        .page, #talkFrame, #onlineUsers,#message {border-radius: 10px 10px 10px 10px;-moz-box-shadow:1px 1px 10px #333333;-webkit-box-shadow:1px 1px 10px #333333;box-shadow:1px 1px 10px #333333;}
+        #send {width: 100px; height: 30px; margin-top: 5px;font-size:14px;cursor:pointer;}
+        #leaveRoom {width: 100px; height: 30px; margin-top: 5px;font-size:14px;cursor:pointer;}
+        #open{cursor:pointer;}
+
+        #talkFrame{overflow-y:auto;overflow-x: hidden;}
+        #talkFrame>div{margin-top: 10px;}
+        .comMes{text-align: center;}
+        .comMes span{display:inline-block;padding: 4px 3px;border-radius:3px;background-color: #D4D4D4;font-size: 12px;color:#fff;}
+        .comMes strong{padding-right: 4px;}
+        .othersMes{float: left;position: relative;clear:both;width: 100%;}
+        .othersMes img{position:relative;width: 30px;height: 30px;top:0px;left:0;}
+        .othersMes .name{position:relative;font-size: 14px;color:#CFD9EB;top:-32px;left:36px;}
+        .othersMes .text{position:relative;display:inline-block;top:-30px;left:36px;padding: 5px 4px;border-radius:4px;color:#444;font-size: 14px;line-height: 18px;border:1px solid #DCDCDC;background-color: #A9D84A;max-width: 500px;word-wrap:break-word;}
+        .selfMes{float: right;position: relative;clear:both;width: 100%;}
+        .selfMes img{float: right;position:relative;width: 30px;height: 30px;}
+        .selfMes .text{float: right;position:relative;right:8px;padding: 5px 4px;border-radius:4px;color:#444;font-size: 14px;line-height: 18px;border:1px solid #DCDCDC;background-color: #fff;max-width: 500px;word-wrap:break-word;}
+
+        .onlineUser{padding-left: 8px;line-height: 20px;}
+        .onlineNums{height: 30px;line-height: 30px;padding-left: 4px;}
+    </style>
+  </head>
+  <body>
+    <!-- 浏览器不兼容时显示 -->
+    <div id='errorPage' class='page' style='display:none;'>
+        <h1>当前浏览器不支持WebSocket，请使用chrome or opera or firefox 18</h1>
+    </div>
+    <!-- 登录时显示 -->
+    <div id='prePage' class='page' style='width:690px;text-align:center;'>
+        <input id='nickInput' type='text' placeholder="请输入您的昵称"  />&nbsp;
+        <input id='open' type='button' value='进入聊天室'  />
+    </div>
+    <!-- 聊天室：登录后显示 -->
+    <div id='mainPage' class='page' style='display:none;'>
+        <div style='overflow:hidden;'>
+            <div class='talkLeft'>
+                <div id='talkFrame'>
+                    
+                </div>
+                <div id='inputDiv'>
+                    <textarea placeholder="嗨，随便说点啥呗" id="message"></textarea>
+                </div>
+                <div style='overflow:hidden;'>
+                    <input class='f-left' type='button' value='退出聊天室' id="leaveRoom" />
+                    <input class='f-right' type='button' value='发送' id="send" />
+                </div>
+            </div>
+            <div class='talkRight'>
+                <div class="onlineNums">在线人数：<span>0</span></div>
+                <ul id='onlineUsers'>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="../../../lib/jquery.js"></script>
+    <script type="text/javascript">
+        /*获取元素*/
+        var $errorPage = $('#errorPage'),
+            $prePage = $('#prePage'),
+            $nickInput = $prePage.find('#nickInput'),
+            $open = $prePage.find('#open'),
+            $mainPage = $('#mainPage'),
+            $talkFrame = $mainPage.find('#talkFrame'),
+            $onlineUsers = $mainPage.find('#onlineUsers'),
+            $message = $mainPage.find('#message'),
+            $send = $mainPage.find('#send'),
+            $leaveRoom = $mainPage.find('#leaveRoom'),
+            $nums = $mainPage.find('.onlineNums').find('span');
+
+        /*浏览器兼容*/
+        if(!WebSocket){
+            $errorPage.show();
+            $prePage.hide();
+            $mainPage.hide();
+        }
+        var socket = null;//WebSocket实例
+        /*给元素注册事件*/
+        //连接
+        var name = '';
+        $open.click(function(){
+            name = $nickInput.val();
+            if(name.trim()===''){
+                alert('昵称不能为空');
+                return;
+            }
+            //若socket已存在则不执行以下代码
+            if(socket){
+                return;
+            }
+            //界面
+            $prePage.hide();
+            $mainPage.show();
+            //聊天功能
+            socket = new WebSocket('ws://10.3.132.133:414');
+            socket.onopen = function(){
+                var obj = {type:'login',text:name};
+                socket.send(JSON.stringify(obj));
+            }; 
+            //监听服务端发送的信息，根据类别执行不同函数          
+            socket.onmessage = function(mse){
+                var obj = JSON.parse(mse.data);
+                switch(obj.type){
+                    case 'others':
+                        personMes(obj.text,obj.type,obj.name);
+                        break;
+                    case 'longTime':
+                    case 'login':
+                    case 'loginOut':
+                        comMes(obj.type,obj.text,obj.onlineNames);
+                        break;
+                }
+            };
+            socket.onclose = function(){console.log('结束聊天')};
+            socket.onerror = function(){console.log('连接出错')};
+        });
+        //发送
+        $send.click(function(){
+            //界面
+            var text = $message.val();
+            if(text.trim()===''){
+                alert('输入内容不能为空');
+                return;
+            }
+            personMes(text);
+            $message.val('');
+            //聊天功能
+            var obj = {type:'others',text,name};
+            socket.send(JSON.stringify(obj));
+        });
+        //退出
+        $leaveRoom.click(function(){ 
+            //界面
+            $prePage.show();
+            $talkFrame.html('');
+            $mainPage.hide();
+            //聊天功能
+            var obj = {type:'loginOut',text:name};
+            socket.send(JSON.stringify(obj));
+            socket.close();
+            socket = null;         
+        });
+
+        /*定义界面相关函数*/
+        function personMes(text,type,name){
+            type = type?type:'self';
+            var htmlStr = '';
+            text = text.replace('<','&lt;');
+            if(type==='self'){
+                htmlStr = `
+                            <div class="selfMes">
+                                <img src="../img/xiaoyang.png" alt="" />
+                                <div class="text">${text}</div>
+                            </div>
+                            `;
+            }else{
+                htmlStr = `
+                            <div class="othersMes">
+                                <img src="../img/xiaomi.png" alt="" />
+                                <div class="name">${name}</div>
+                                <div class="text">${text}</div>
+                            </div>
+                            `;
+            }
+            $(htmlStr).appendTo($talkFrame).get(0).scrollIntoView();;    
+        }
+        function comMes(type,text,onlineNames){
+            var htmlStr = '';
+            if(type==='longTime'){
+                htmlStr = `<div class="comMes"><span>${text}</span></div>`;
+            }else if(type==='login'){
+                htmlStr = `<div class="comMes"><span><strong>${text}</strong>加入了群聊</span></div>`;
+                showOnlineNames(onlineNames);
+            }else{
+                htmlStr = `<div class="comMes"><span><strong>${text}</strong>退出了群聊</span></div>`;
+                showOnlineNames(onlineNames);
+            } 
+            $(htmlStr).appendTo($talkFrame).get(0).scrollIntoView();
+        }
+        //显示在线用户名
+        function showOnlineNames(arr){
+            var lisStr = arr.map(function(item){
+                return `<li class="onlineUser"><span class="userName">${item}</span></li>`;
+            }).join('');
+            $onlineUsers.html(lisStr);
+            $nums.text(arr.length);
+        }
+
+        /*定义聊天功能相关函数*/
+    </script>
+  </body>
+</html>
