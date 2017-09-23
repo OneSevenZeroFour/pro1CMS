@@ -6,7 +6,7 @@ var path = require('path');
 var app = express();
 
 var http = require('http');
-
+    
 var server = http.createServer(app);
 //var router = express.Router();
 
@@ -16,7 +16,9 @@ app.use(express.static('../../font/src/img'));
 
 //引用路由
 require('../module/router.js')(app);
-require('../module/xy_socket')(server);
+require('../module/xy_socket.js')(server);
+require('../module/xy_letter.js')(app);
+require('../module/xy_readLetter.js')(app);
 
 //创建服务器
 server.listen(8888);

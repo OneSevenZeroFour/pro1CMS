@@ -63,6 +63,15 @@
 			height: 190px;
 			margin: 0 10px;
 		}
+		.letter-box{position: relative;}
+		.msg{width:300px;height:180px;position:absolute;left:0;top:37px;background:#fff;display:none;padding:0 15px;z-index: 999;color:#000;border:1px solid #555;border-top:0 none;overflow-y:scroll;}
+		.msg ul{height:150px;}
+		.msg li{height:30px;line-height:30px;overflow: hidden;}
+		.msg li .content{float:left;}
+		.msg li .read{float:right;}
+		.msg li .read span{padding:3px;background:#ccc;}
+		.msg li .read span:hover{cursor:pointer;}
+
 	</style>
 </head>
 
@@ -82,7 +91,10 @@
 		<div class="am-collapse am-topbar-collapse" id="topbar-collapse">
 
 			<ul class="am-nav am-nav-pills am-topbar-nav am-topbar-right admin-header-list">
-				<li><a href="javascript:;"><span class="am-icon-envelope-o"></span> 收件箱 <span class="am-badge am-badge-warning">5</span></a></li>
+				<li class="letter-box">
+					<a href="javascript:;"><span class="am-icon-envelope-o"></span> 收件箱 <span class="am-badge am-badge-warning">5</span></a>
+					<ul class="msg"></ul>
+				</li>
 				<li class="am-dropdown" data-am-dropdown>
 					<a class="am-dropdown-toggle" data-am-dropdown-toggle href="javascript:;">
           <span class="am-icon-users"></span> 管理员 <span class="am-icon-caret-down"></span>
@@ -283,7 +295,8 @@
 	<script src="assets/lib/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
 	<script src="assets/lib/bootstrap-fileinput-master/js/fileinput.min.js"></script>
 	<script src="assets/lib/bootstrap-fileinput-master/js/locales/zh.js"></script>
-	<script src="../js/base.js"></script>	
+	<script src="../js/base.js"></script>
+	<script src="assets/js/letter.js"></script>	
 
 	<script>
 		//更新判断
