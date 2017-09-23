@@ -12,6 +12,7 @@ var server = http.createServer(app);
 
 //设置静态文件夹
 app.use(express.static(path.join(__dirname,'../')));
+app.use(express.static('../../font/src/img'));
 
 //引用路由
 require('../module/router.js')(app);
