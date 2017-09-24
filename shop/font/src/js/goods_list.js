@@ -2,7 +2,7 @@
 * @Author: 陈文贵
 * @Date:   2017-09-05 22:05:16
 * @Last Modified by:   Marte
-* @Last Modified time: 2017-09-23 12:15:45
+* @Last Modified time: 2017-09-24 18:57:49
 */
 
 require(['config'],function(){
@@ -28,65 +28,7 @@ require(['config'],function(){
                 });
             }
 
-            //聊天窗口
-            // var show = document.querySelector('.show');
-            // console.log(show);
-            // show.scrollTop = show.scrollHeight;
-            $('.rChat').on('click',function(){
-                console.log(1);
-                $('.chat').show();
-            });
-
-            $('.chat').draggable();
-            $('#close').on('click',function(){
-                $('.chat').hide();
-            });
             
-            var socket = io('http://127.0.0.1:8888');
-            $('.sendbtn').on('click',function(){
-                
-                if($('textarea').val()===''){
-                    $('.sendbtn').attr('disabled',true);
-                    if($('textarea').focus()){
-                        $('.sendbtn').attr('disabled',false);
-                    }
-                }else{
-                    $('.sendbtn').attr('disabled',false);
-                    socket.emit('chat',$('textarea').val());
-                    
-                    // $.ajax({
-                    //     type:'post',
-                    //     url:'http://127.0.0.1:8888',
-                    //     async:true,
-                    //     data:{
-                    //         news:$('textarea').val()
-                    //     },
-                    //     success:function(){
-
-                    //     }
-                    // });
-                    $('textarea').val("").focus();
-                }
-                
-            })
-            socket.on('getMsg',function(data){
-                console.log(data);
-                var hour = new Date().getHours();
-                var min = new Date().getMinutes();
-                var sec = new Date().getSeconds();
-                if(hour<10){
-                    hour = '0'+ hour;
-                }
-                if(min<10){
-                    min = '0'+ min;
-                }
-                if(sec<10){
-                    sec = '0'+ sec;
-                }
-                document.querySelector('.msg').innerHTML += '<p class="time">'+ hour+":"+ min+":"+ sec+'</p>'+'<p class="mywrite"><span>'+data+'</span></p>';
-                $('.show').scrollTop( $('.show')[0].scrollHeight) ;
-
-            });
 
 
             /*=========right_bar========*/
@@ -102,7 +44,7 @@ require(['config'],function(){
                 $('html,body').animate({scrollTop:0});
             });
 
-            /==========列表页==========/ 
+            // /==========列表页==========/ 
             var goodType = location.search.split('=')[1];
             /*
                 filter_box

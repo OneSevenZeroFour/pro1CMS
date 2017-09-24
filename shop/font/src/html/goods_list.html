@@ -8,7 +8,6 @@
     <link rel="stylesheet" type="text/css" href="../css/common.css" />
     <link rel="stylesheet" type="text/css" href="../css/good_list.css" />
     <link rel="stylesheet" type="text/css" href="../css/chat.css" />
-    <script type="text/javascript" src="../js/socket.js"></script>
 </head>
 <body>
     <div class="page">
@@ -766,7 +765,7 @@
                 <li><i></i><span>品牌分类</span></li>
                 <li id="rCart"><i><strong>0</strong></i><p><a href="good_cart.html" style="color:#fff">购物车</a><b></b></p></li>
                 <li><i></i><p>我的订单<b></b></p></li>
-                <li class="rChat"><i></i><p>联系客服<b></b></p></li>
+                <li class="rChat"><i></i><p>留言板<b></b></p></li>
             </ul>
             <ul class="rb_bot">
                 <li id="showWea"><i></i><p style="width:120px;">根据定位显示天气<b></b></p></li>
@@ -778,14 +777,14 @@
         <div class="geo_wea">
         </div>
 
-        <!-- 客服聊天窗口 -->
+        <!-- 留言板窗口 -->
         <div class="chat">
             <div class="title">
-                <span>名鞋库客服</span>
+                <span>留言板</span>
                 <span id="close">&times;</span>
             </div>
             <div class="show">
-                <p class="nohere">-- 客服不在电脑旁，有问题请留言 --</p>
+                <p class="nohere">-- 请留下您对本网站的意见与建议 --</p>
                 <p class="msg"></p>
                 <!-- <p class="autores">-- 您的留言已收到，看到会马上回复你哦 --</p> -->
                 
@@ -797,6 +796,23 @@
         </div>
 
     </div>
+    <!-- 前端客服 -->
+    <div id="chatBox">
+        <div class="cHead">
+            <div class="hLeft">名鞋库欢迎您！</div>
+            <div class="hRight"><span class="closeBtn">X</span></div>
+        </div>
+        <div class="cContent">
+            <div class="cCHat">
+            </div>
+            <div class="cTool">提示：1.0版本暂不支持表情和图片聊天</div>
+        </div>
+        <div class="cFoot">
+                <textarea name="cSay" id="cSya" class="sendText"></textarea>
+                <a href="javascript:void(0)" class="sendBtn">发送</a>
+        </div>
+    </div>
+    <script type="text/javascript" src="../js/socket_io.js"></script>
     <script type="text/javascript" src="../lib/require.js" data-main="../js/goods_list.js"></script>
     <!-- 根据定位显示天气 -->
     <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=1NHiwkFVGcEOUGPRCvnZCwqdVVDfqkRc"></script>

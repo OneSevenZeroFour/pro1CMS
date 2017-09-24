@@ -16,7 +16,8 @@ app.use(express.static('../../font/src/img'));
 
 //引用路由
 require('../module/router.js')(app);
-require('../module/xy_socket.js')(server);
+// require('../module/xy_socket.js')(server);
+require('../module/cus_server.js')(server);
 require('../module/xy_letter.js')(app);
 require('../module/xy_readLetter.js')(app);
 

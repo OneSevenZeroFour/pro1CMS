@@ -15,6 +15,16 @@
 		<meta name="apple-mobile-web-app-title" content="Amaze UI" />
 		<link rel="stylesheet" href="assets/css/amazeui.min.css" />
 		<link rel="stylesheet" href="assets/css/admin.css">
+		<style type="text/css">
+			.letter-box{position: relative;}
+			.msg{width:300px;height:180px;position:absolute;left:0;top:37px;background:#fff;display:none;padding:0 15px;z-index: 999;color:#000;border:1px solid #555;border-top:0 none;overflow-y:scroll;}
+			.msg ul{height:150px;}
+			.msg li{height:30px;line-height:30px;overflow: hidden;}
+			.msg li .content{float:left;}
+			.msg li .read{float:right;}
+			.msg li .read span{padding:3px;background:#ccc;}
+			.msg li .read span:hover{cursor:pointer;}
+		</style>
 	</head>
 
 	<body>
@@ -33,24 +43,15 @@
 			<div class="am-collapse am-topbar-collapse" id="topbar-collapse">
 
 				<ul class="am-nav am-nav-pills am-topbar-nav am-topbar-right admin-header-list">
-					<li>
-						<a href="javascript:;"><span class="am-icon-envelope-o"></span> 收件箱 <span class="am-badge am-badge-warning">5</span></a>
-					</li>
+					<li class="letter-box">
+		                <a href="javascript:;"><span class="am-icon-envelope-o"></span> 收件箱 <span class="am-badge am-badge-warning">0</span></a>
+		                <ul class="msg"></ul>
+		            </li>
 					<li class="am-dropdown" data-am-dropdown>
-						<a class="am-dropdown-toggle" data-am-dropdown-toggle href="javascript:;">
-							<span class="am-icon-users"></span> 管理员 <span class="am-icon-caret-down"></span>
+						<a target="_blank" href="cus_server.html">
+							<span class="am-icon-users"></span> 后台客服 
 						</a>
-						<ul class="am-dropdown-content">
-							<li>
-								<a href="#"><span class="am-icon-user"></span> 资料</a>
-							</li>
-							<li>
-								<a href="#"><span class="am-icon-cog"></span> 设置</a>
-							</li>
-							<li>
-								<a href="#"><span class="am-icon-power-off"></span> 退出</a>
-							</li>
-						</ul>
+						
 					</li>
 					<li class="am-hide-sm-only">
 						<a href="javascript:;" id="admin-fullscreen"><span class="am-icon-arrows-alt"></span> <span class="admin-fullText">开启全屏</span></a>
@@ -185,11 +186,13 @@
 
 		<!--[if (gte IE 9)|!(IE)]><!-->
 		<script src="assets/js/jquery.min.js"></script>
+		<script src="assets/js/letter.js"></script>
 		<!--<![endif]-->
 		<script src="assets/js/amazeui.min.js"></script>
 		<script src="assets/js/app.js"></script>
 		<script src="../js/base.js"></script>
 		<script src='../js/goods.js'></script>
+		
 	</body>
 
 </html>

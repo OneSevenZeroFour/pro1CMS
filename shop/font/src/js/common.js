@@ -2,7 +2,7 @@
 * @Author: 陈文贵
 * @Date:   2017-09-01 09:12:53
 * @Last Modified by:   Marte
-* @Last Modified time: 2017-09-20 20:54:18
+* @Last Modified time: 2017-09-24 19:04:59
 */
 
 /*
@@ -43,7 +43,7 @@ if(username){
         document.cookie='username=;expires='+date+';path=/';
         location.reload(true);
     });
-
+    
     /*
         公共购物车部分
      */
@@ -258,3 +258,206 @@ if(username){
     var $popObj=$('<div></div>').addClass('popupWrap').html(poupHtml).appendTo($('body')).on('click',function(){$popObj.remove()});
     $('.popBtn').click(function(){$popObj.remove()});
  }
+
+
+
+
+/*
+    前端客服
+ */
+//拖拽实现
+function getByClass(clsName,parent){
+  var oParent=parent?document.getElementById(parent):document,
+      eles=[],
+      elements=oParent.getElementsByTagName('*');
+
+  for(var i=0,l=elements.length;i<l;i++){
+    if(elements[i].className==clsName){
+      eles.push(elements[i]);
+    }
+  }
+  return eles;
+}
+
+window.onload=drag;
+
+function drag(){
+   var oTitle=getByClass('cHead','chatBox')[0];
+   // 拖曳
+   oTitle.onmousedown=fnDown;
+}
+
+function fnDown(event){
+  event = event || window.event;
+  var oDrag=document.getElementById('chatBox'),
+      // 光标按下时光标和面板之间的距离
+      disX=event.clientX-oDrag.offsetLeft,
+      disY=event.clientY-oDrag.offsetTop;
+  // 移动
+  document.onmousemove=function(event){
+    event = event || window.event;
+    fnMove(event,disX,disY);
+  }
+  // 释放鼠标
+  document.onmouseup=function(){
+    document.onmousemove=null;
+    document.onmouseup=null;
+  }
+}
+
+function fnMove(e,posX,posY){
+  var oDrag=document.getElementById('chatBox'),
+      l=e.clientX-posX,
+      t=e.clientY-posY,
+      winW=document.documentElement.clientWidth || document.body.clientWidth,
+      winH=document.documentElement.clientHeight || document.body.clientHeight,
+      maxW=winW-oDrag.offsetWidth-10,
+      maxH=winH-oDrag.offsetHeight;
+  if(l<0){
+    l=0;
+  }else if(l>maxW){
+    l=maxW;
+  }
+  if(t<0){
+    t=10;
+  }else if(t>maxH){
+    t=maxH;
+  }
+  oDrag.style.left=l+'px';
+  oDrag.style.top=t+'px';
+}
+
+
+// 聊天实现
+     $($(".top_menu>li").get(4)).click(function(){connectServer();});
+
+     //获取元素
+     var $chatBox = $('#chatBox');
+     var $closeBtn = $chatBox.find('.closeBtn');
+     var $cCHat = $chatBox.find('.cCHat');
+     var $sendText = $chatBox.find('.sendText');
+     var $sendBtn = $chatBox.find('.sendBtn');
+
+     //连接客服
+     var socket = null;
+     if(!socket){
+             //建立连接
+         socket = io('http://localhost:8888');
+     }       
+     function connectServer(){
+         //界面
+         $chatBox.show();
+
+         //客服聊天功能
+         // if(!socket){
+             //建立连接
+             // socket = io('http://localhost:4144');
+             //连接成功后将用户名发送到服务器
+             var clientName = username||'youke';//获取登录会员
+             // var clientName ='youke';
+             // socket.on('connect',function(){
+                 socket.emit('clientLogin',clientName);//客户上线
+             // });
+             //监听服务器事件：获取从服务器发送过来的信息
+             socket.on('sendToClient',function(obj){//obj{客服名,text}
+                 addCont(obj);
+             });
+         // };
+     }     
+     //关闭客服
+     $closeBtn.click(function(){
+         //界面
+         $chatBox.hide()
+
+         //客服聊天功能
+         // socket.emit('clientLeave');//客户下线
+     });
+     //发送信息
+     $sendBtn.click(function(){
+         //界面
+         var text = $sendText.val();
+         if(text.trim()===''){return;}
+         var obj = {text,className:'cUser',personName:username};//会员名personName:username
+         addCont(obj);
+         $sendText.val('');
+
+         //客服聊天功能
+         //将发送的文本信息发送到服务器
+         socket.emit('sendToServer',text);
+     });
+     
+     /*定义界面相关函数*/
+     //添加聊天信息条  obj{className,personName,text}
+     function addCont(obj){
+         var className = obj.className||'cCon';
+         var personName = obj.personName||'游客';
+         var text = obj.text||'说点什么吧！';
+         text = text.replace('<','&lt;');
+         var time = new Date().toLocaleTimeString().replace(/(上午)|(下午)/,'');
+         var contHtml = `
+                         <div class="cH"><span class="cPep"><strong>${personName}</strong></span><span class="cTime">${time}</span></div>
+                         <div class="cTalk">${text}</div>
+                         `;
+         $('<div></div>').addClass(className).html(contHtml).appendTo($cCHat).get(0).scrollIntoView();
+     }
+     
+
+     //留言窗口
+     // var show = document.querySelector('.show');
+     // console.log(show);
+     // show.scrollTop = show.scrollHeight;
+     $('.rChat').on('click',function(){
+         console.log(1);
+         $('.chat').show();
+     });
+
+     // $('.chat').draggable();
+     $('#close').on('click',function(){
+         $('.chat').hide();
+     });
+     
+     var socket = io('http://127.0.0.1:8888');
+     $('.sendbtn').on('click',function(){
+         
+         if($('textarea').val()===''){
+             $('.sendbtn').attr('disabled',true);
+             if($('textarea').focus()){
+                 $('.sendbtn').attr('disabled',false);
+             }
+         }else{
+             $('.sendbtn').attr('disabled',false);
+             socket.emit('chat',$('textarea').val());
+             
+             // $.ajax({
+             //     type:'post',
+             //     url:'http://127.0.0.1:8888',
+             //     async:true,
+             //     data:{
+             //         news:$('textarea').val()
+             //     },
+             //     success:function(){
+
+             //     }
+             // });
+             $('textarea').val("").focus();
+         }
+         
+     })
+     socket.on('getMsg',function(data){
+         console.log(data);
+         var hour = new Date().getHours();
+         var min = new Date().getMinutes();
+         var sec = new Date().getSeconds();
+         if(hour<10){
+             hour = '0'+ hour;
+         }
+         if(min<10){
+             min = '0'+ min;
+         }
+         if(sec<10){
+             sec = '0'+ sec;
+         }
+         document.querySelector('.msg').innerHTML += '<p class="time">'+ hour+":"+ min+":"+ sec+'</p>'+'<p class="mywrite"><span>'+data+'</span></p>';
+         $('.show').scrollTop( $('.show')[0].scrollHeight) ;
+
+     });
