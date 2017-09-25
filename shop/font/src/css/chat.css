@@ -4,7 +4,7 @@
 
 .chat .title span { height: 30px; line-height: 30px; font-size: 12px;}
 
-.chat .title #close { display: block; width: 30px; text-align: center; position: absolute; right: 0; top: 0; font-size: 26px; }
+.chat .title #close { display: block; width: 30px; text-align: center; position: absolute; right: 0; top: 0; font-size: 26px; cursor:pointer;}
 
 .chat .show { height: 175px; width: 400px; border-bottom: 1px solid #8EACB6; overflow-y: auto; padding: 0 17px; box-sizing: border-box; }
 
@@ -21,6 +21,6 @@
 
 .chat .write { padding-top: 5px; padding-left: 5px; position: relative; }
 
-.chat .write textarea { border: 1px solid #8EACB6; }
+.chat .write textarea { border: 1px solid #8EACB6; resize: none;}
 
 .chat .write button { position: absolute; right: 5px; top: 10px; width: 50px; }

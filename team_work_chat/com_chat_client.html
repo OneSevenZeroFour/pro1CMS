@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>大众聊天室</title>
+    <title>HelloWorld小组聊天室</title>
     <style>
         /* reset默认样式 */
         body{color:#000;background-color: #22252A;overflow:auto;margin:0;padding:0;}body{font-size:12px;}body,input,select,button,textarea{font-family:verdana,sans-serif;}h1,h2,h3,h4,h5,h6,select,input,textarea,button,table{font-size:100%;}h1,h2,h3,h4,h5,h6,ul,ol,li,form,p,dl,dt,dd,table,th,td,img,blockquote{margin:0;padding:0;border:0;}input,button,textarea,img{line-height:normal;outline:0;}abbr,acronym,address,cite,q,em,code,var,dfn,ins{font-style:normal;text-decoration:none;border:0;}q:before,q:after{content:"";}ul,ol{list-style:none;}table{border-collapse:collapse;border-spacing:0;}select,input,button,button img,textarea,label,img{margin:0;vertical-align:middle;}
@@ -112,7 +112,7 @@
             $prePage.hide();
             $mainPage.show();
             //聊天功能
-            socket = new WebSocket('ws://10.3.132.133:414');
+            socket = new WebSocket('ws://10.3.132.87:414');
             socket.onopen = function(){
                 var obj = {type:'login',text:name};
                 socket.send(JSON.stringify(obj));
@@ -169,14 +169,14 @@
             if(type==='self'){
                 htmlStr = `
                             <div class="selfMes">
-                                <img src="../img/xiaoyang.png" alt="" />
+                                <img src="xiaoyang.png" alt="" />
                                 <div class="text">${text}</div>
                             </div>
                             `;
             }else{
                 htmlStr = `
                             <div class="othersMes">
-                                <img src="../img/xiaomi.png" alt="" />
+                                <img src="xiaomi.png" alt="" />
                                 <div class="name">${name}</div>
                                 <div class="text">${text}</div>
                             </div>

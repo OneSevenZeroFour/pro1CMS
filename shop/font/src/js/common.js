@@ -2,7 +2,7 @@
 * @Author: 陈文贵
 * @Date:   2017-09-01 09:12:53
 * @Last Modified by:   Marte
-* @Last Modified time: 2017-09-24 19:04:59
+* @Last Modified time: 2017-09-25 11:37:57
 */
 
 /*
@@ -115,7 +115,7 @@ if(username){
 /*
     根据定位显示天气
  */
- $('#showWea').click(function(){getCoords()});
+ $('#showWea').click(function(){$('.geo_wea').html('<span style="font-size:20px;color:#424852;">加载中......</span>');getCoords();});
  /*
      获取经纬度
   */

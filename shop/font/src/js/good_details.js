@@ -2,7 +2,7 @@
 * @Author: 陈文贵
 * @Date:   2017-09-01 10:51:04
 * @Last Modified by:   Marte
-* @Last Modified time: 2017-09-24 17:21:47
+* @Last Modified time: 2017-09-25 11:29:16
 */
 require(['config'],function(){
     require(['jquery'],function($){
@@ -137,6 +137,10 @@ require(['config'],function(){
                     res = JSON.parse(res);
                     createGoodDetail(res);
                     doAfterLoad();
+                    //动态生成商品详情html结构
+                    if(res.des){
+                        $('.tb_cont_dec').html(res.des);
+                    }
                 }
             });
             function doAfterLoad(){
