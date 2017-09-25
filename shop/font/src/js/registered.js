@@ -2,11 +2,12 @@
 * @Author: 陈文贵
 * @Date:   2017-09-01 10:49:36
 * @Last Modified by:   Marte
-* @Last Modified time: 2017-09-14 20:26:13
+* @Last Modified time: 2017-09-25 16:13:21
 */
 
 require(['config'],function(){
     require(['jquery'],function($){
+        var baseUrl = 'http://10.3.132.87';
         //获取元素
         $reg = $('.reg_main_l');
         $tip = $reg.find('.mes_tip');

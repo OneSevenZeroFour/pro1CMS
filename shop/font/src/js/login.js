@@ -2,10 +2,12 @@
 * @Author: 陈文贵
 * @Date:   2017-09-05 22:04:16
 * @Last Modified by:   Marte
-* @Last Modified time: 2017-09-20 16:46:53
+* @Last Modified time: 2017-09-25 16:13:12
 */
 require(['config'],function(){
     require(['jquery'],function($){
+        var baseUrl = 'http://10.3.132.87';
+
         var $login_box = $('.login_box');
         var $mes_tip = $login_box.find('.mes_tip');
         var $input_menu = $('.input_menu');

@@ -2,12 +2,12 @@
 * @Author: 陈文贵
 * @Date:   2017-09-05 22:05:57
 * @Last Modified by:   Marte
-* @Last Modified time: 2017-09-20 20:57:18
+* @Last Modified time: 2017-09-25 16:12:36
 */
 
 require(['config'],function(){
     require(['jquery'],function($){
-
+         var baseUrl = 'http://10.3.132.87';
         //应该根据用户id获取该用户购物车列表【先用本地cookie】
         var username = '';
         var cart_list = [];//应该根据用户id获取该用户购物车列表【先用本地cookie】

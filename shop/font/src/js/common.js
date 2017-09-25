@@ -2,13 +2,14 @@
 * @Author: 陈文贵
 * @Date:   2017-09-01 09:12:53
 * @Last Modified by:   Marte
-* @Last Modified time: 2017-09-25 11:37:57
+* @Last Modified time: 2017-09-25 16:16:32
 */
 
 /*
     cookie
  */
  var username = '';
+ var baseUrl = 'http://10.3.132.87';
  var cart_list = [];//应该根据用户id获取该用户购物车列表【先用本地cookie】
  var cookies = document.cookie;
  if(cookies.length>0){
@@ -342,7 +343,7 @@ function fnMove(e,posX,posY){
      var socket = null;
      if(!socket){
              //建立连接
-         socket = io('http://localhost:8888');
+         socket = io(baseUrl+':8888');
      }       
      function connectServer(){
          //界面
@@ -416,7 +417,7 @@ function fnMove(e,posX,posY){
          $('.chat').hide();
      });
      
-     var socket = io('http://127.0.0.1:8888');
+     var socket = io(baseUrl+':8888');
      $('.sendbtn').on('click',function(){
          
          if($('textarea').val()===''){

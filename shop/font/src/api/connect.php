@@ -1,10 +1,10 @@
 <?php
 
     // 配置参数
-    $servername = 'localhost';
-    $username = 'root';
-    $password = '';
-    $database = 'first_project';
+    $servername = 'rm-wz9w4v621xko71doxo.mysql.rds.aliyuncs.com';
+    $username = 'xiaoxiaoyuan';
+    $password = 'yzl00-00yzl';
+    $database = 'cms';
 
     //连接数据库
     $conn = new mysqli($servername,$username,$password,$database);

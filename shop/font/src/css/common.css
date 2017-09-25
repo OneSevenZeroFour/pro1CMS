@@ -11,7 +11,7 @@
 .cH strong{color:#222;padding-right:6px;}
 .cTalk{background-color: #F1F8F9;padding: 4px 12px;display: inline-block;border-radius: 4px;max-width: 340px;word-wrap: break-word;}
 .cTool{height: 22px;padding-left: 8px;color:#444;line-height: 22px;border-top:1px solid #DA363A;border-bottom:1px solid #DA363A;background-color: #FAC3C4;}
-.cFoot{background-color: #fff;}
+.cFoot{background-color: #fff;height: 60px;}
 .cFoot textarea{margin: 8px;height: 40px;width: 290px;resize: none;}
 .cFoot a{display: inline-block;position: relative;top: -26px;left: 5px;width: 60px;height: 36px;border-radius: 2px;line-height: 36px;text-align: center;font-size: 14px;font-weight: bold;color: #FFF;background-color: #F25455;text-decoration: none;}
 .cUser{float: right;clear:both;}
